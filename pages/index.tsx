@@ -141,7 +141,7 @@ const Home: NextPage = () => {
       </Head>
       <div className="relative flex py-[5rem] h-screen ">
         <motion.div
-          className="absolute right-[10%] bottom-[55%]"
+          className="absolute right-[20%] bottom-[55%]"
           animate={{ y: 0 }}
           initial={{ y: -1000 }}
           transition={{ duration: 5, type: "spring" }}
