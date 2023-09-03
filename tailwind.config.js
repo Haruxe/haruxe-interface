@@ -8,7 +8,13 @@ module.exports = {
     "./src/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        "major-mono-display": ["MajorMonoDisplay", "sans"],
+        "dm-serif-display": ["DMSerifDisplay-Regular", "serif"],
+        tusker: ["Tusker", "sans"],
+      },
+    },
   },
   plugins: [],
 };

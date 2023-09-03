@@ -47,21 +47,29 @@ function MyApp({ Component, pageProps }: AppProps) {
   };
   return (
     <>
-      {selectedProfile ? (
-        <>
-          <div className="max-w-[1000px] place-content-center place-items-center mx-auto md:px-6 px-4 mb-[6rem]">
+      {!selectedProfile ? (
+        <div
+          style={{
+            backgroundImage: `url("/images/Space1.png")`,
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "cover",
+          }}
+        >
+          <div className="place-content-center place-items-center mx-auto relative mb-[6rem]">
             <Navbar />
-            <Component {...pageProps} />
-            <Footer />
+            <div className="max-w-[1500px] place-items-center mx-auto">
+              <Component {...pageProps} />
+              <Footer />
+            </div>
           </div>
-        </>
+        </div>
       ) : (
         <div className="bg-[#141414] h-screen place-content-center place-items-center flex">
           <motion.div
             className="space-y-10 place-content-center place-items-center flex flex-col"
-            initial={{ opacity: 0, scale: 1.05 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5 }}
+            // initial={{ opacity: 0, scale: 1.05 }}
+            // animate={{ opacity: 1, scale: 1 }}
+            // transition={{ duration: 0.5 }}
           >
             <h1 className="text-center text-5xl font-medium">
               Who&apos;s Watching?

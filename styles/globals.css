@@ -24,7 +24,22 @@ a {
     color-scheme: dark;
   }
   body {
-    color: white;
-    background: #141414;
+    color: #fdffe4;
+    background: #1a1919;
   }
+}
+
+@font-face {
+  font-family: "MajorMonoDisplay";
+  src: url("/fonts/MajorMonoDisplay-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "DMSerifDisplay-Regular";
+  src: url("/fonts/DMSerifDisplay-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Tusker";
+  src: url("/fonts/TuskerGrotesk-2600Semibold.ttf") format("truetype");
 }
