@@ -1,6 +1,4 @@
-import Image from "next/image";
 import React from "react";
-import { ShoppingBagIcon, HomeIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 
 function Navbar() {

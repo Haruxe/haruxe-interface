@@ -76,10 +76,10 @@ const Home: NextPage = () => {
           </h1>
         </div>
         <div>
-          <p className="text-zinc-300 2xl:text-lg md:text-base text-[2.5vw] md:text-[2vw]">
+          <p className="text-zinc-300 font-mono 2xl:text-lg md:text-base text-[2.5vw] md:text-[2vw]">
             {description}
           </p>
-          <div className="flex flex-wrap gap-2 mt-3 font-dm-serif-display">
+          <div className="flex flex-wrap gap-2 mt-3 font-mono">
             {skills &&
               skills.map((skill, index) => {
                 return (
