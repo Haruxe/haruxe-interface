@@ -22,12 +22,12 @@ function Navbar() {
     >
       <motion.div
         initial={{ backdropFilter: "blur(0px)" }}
-        animate={{ backdropFilter: "blur(20px)" }}
+        animate={{ backdropFilter: "blur(20px)", backgroundColor: "#0000003d" }}
         transition={{ duration: 0.7, delay: 1 }}
       >
         <div className="2xl:w-[1500px] w-screen place-content-center mx-auto">
           <div className="py-5 md:px-6 px-4 flex place-content-between 2xl:w-[1500px] w-screen ">
-            <div className="flex space-x-5 place-items-center ">
+            <div className="flex space-x-5 place-items-center">
               <Link
                 href="/"
                 className="duration-150 cursor-pointer text-2xl font-black"
@@ -35,7 +35,7 @@ function Navbar() {
                 HARUXE
               </Link>
             </div>
-            <div className="ml-auto flex space-x-3 place-items-center place-content-center">
+            <div className="ml-auto flex space-x-3 place-items-center place-content-center mr-4">
               <Link
                 href="https://linkedin.com/in/joshfrancisco"
                 className="duration-150 "

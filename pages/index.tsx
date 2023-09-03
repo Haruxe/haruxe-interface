@@ -21,6 +21,7 @@ import { StarAndCrescent } from "styled-icons/fa-solid";
 const Home: NextPage = () => {
   const { scrollYProgress, scrollY } = useScroll();
   const opacity = useTransform(scrollYProgress, [0, 0.1, 0.5, 1], [1, 1, 0, 0]);
+  const opacityKirby = useTransform(scrollYProgress, [0, 0.5], [1, 0.5]);
 
   interface JobProps {
     title: string;
@@ -56,26 +57,26 @@ const Home: NextPage = () => {
 
     return (
       <motion.div
-        className="p-5 duration-150 flex flex-col place-items-center space-y-5 mr-auto"
+        className="duration-150 flex flex-col place-items-center 2xl:space-y-5 space-y-2 mr-auto z-10"
         whileInView={{ opacity: 1, x: 0 }}
         initial={{ opacity: 0, x: -50 }}
         transition={{ duration: 1.4, type: "spring" }}
       >
         <div className="flex flex-col place-items-start mr-auto leading-none">
           <Link
-            className="font-bold font-tusker 2xl:text-[7rem] text-[11vw] uppercase hover:text-purple-200 hover:translate-x-2 translate-x-0 duration-150"
+            className="font-bold font-tusker 2xl:text-[7rem] md:text-[5rem] text-[11vw] uppercase hover:text-purple-200 hover:translate-x-2 translate-x-0 duration-150"
             href={link}
             target="_blank"
           >
             {company}
           </Link>
-          <h1 className="font-bold 2xl:text-lg text-[2vw] uppercase">
+          <h1 className="font-bold 2xl:text-lg md:text-base text-[2vw] uppercase">
             {title}
             {type && " · " + type}
           </h1>
         </div>
         <div>
-          <p className="text-zinc-300 2xl:text-lg text-[2.5vw] md:text-[2vw]">
+          <p className="text-zinc-300 2xl:text-lg md:text-base text-[2.5vw] md:text-[2vw]">
             {description}
           </p>
           <div className="flex flex-wrap gap-2 mt-3 font-dm-serif-display">
@@ -86,8 +87,8 @@ const Home: NextPage = () => {
                     key={skill}
                     className={
                       randomBooleans[index]
-                        ? "2xl:px-5 2xl:py-3 px-[3vw] py-[2vw] 2xl:text-lg text-[2vw] font-bold rounded-full outline outline-1 uppercase"
-                        : "2xl:px-5 2xl:py-3 px-[3vw] py-[2vw] 2xl:text-lg text-[2vw] font-bold rounded-full outline outline-1 uppercase bg-[#fdffe4] text-black"
+                        ? "2xl:px-5 2xl:py-3 md:py-2 md:px-4 px-[3vw] py-[2vw] 2xl:text-lg md:text-base text-[2.4vw] font-bold rounded-full outline outline-1 uppercase"
+                        : "2xl:px-5 2xl:py-3 md:py-2 md:px-4 px-[3vw] py-[2vw] 2xl:text-lg md:text-base text-[2.4vw] font-bold rounded-full outline outline-1 uppercase bg-[#fdffe4] text-black"
                     }
                   >
                     {skill}
@@ -123,7 +124,7 @@ const Home: NextPage = () => {
   useEffect(() => {
     const handleScroll = () => {
       const scrollY = window.scrollY;
-      const newOffsetY = scrollY * 0.24; // Adjust the multiplier to increase or decrease the effect
+      const newOffsetY = scrollY * 0.9; // Adjust the multiplier to increase or decrease the effect
       controls.start({ y: newOffsetY });
     };
 
@@ -140,7 +141,7 @@ const Home: NextPage = () => {
       </Head>
       <div className="relative flex py-[5rem] h-screen ">
         <motion.div
-          className="absolute right-[10%] top-[25%]"
+          className="absolute right-[10%] bottom-[55%]"
           animate={{ y: 0 }}
           initial={{ y: -1000 }}
           transition={{ duration: 5, type: "spring" }}
@@ -148,7 +149,8 @@ const Home: NextPage = () => {
           <motion.div
             initial={{ y: 0 }}
             animate={controls}
-            className="2xl:w-[450px] 2xl:h-[450px] w-[40vw] h-[40vw] relative"
+            className="2xl:w-[350px] 2xl:h-[350px] md:h-[300px] md:w-[300px] w-[40vw] h-[40vw] relative"
+            style={{ opacity: opacityKirby }}
           >
             <Image src="/images/kirbychute.gif" fill alt="kirby" />
           </motion.div>
@@ -159,8 +161,8 @@ const Home: NextPage = () => {
           initial={{ scale: 0, opacity: 0 }}
           transition={{ type: "tween" }}
         >
-          <p className="2xl:text-[15rem] text-[18vw] font-bold font-tusker leading-none py-10 align-top flex flex-col mb-auto rounded-3xl">
-            <span className="2xl:text-2xl text-[2vw] font-major-mono-display font-black 2xl:mb-3 mb-[2vw] z-10">
+          <p className="2xl:text-[15rem] md:text-[12rem] text-[25vw] font-bold font-tusker leading-none py-10 align-top flex flex-col mb-auto rounded-3xl">
+            <span className="2xl:text-2xl md:text-xl text-[3vw] font-major-mono-display font-black 2xl:mb-3 mb-[2vw] z-10">
               hi, I&apos;m josh francisco-
             </span>{" "}
             <span className="">
@@ -189,10 +191,10 @@ const Home: NextPage = () => {
               DEVELOPER.
             </motion.span>
             <motion.span
-              className="2xl:text-2xl text-[2vw] font-major-mono-display font-black ml-auto"
+              className="2xl:text-2xl md:text-xl text-[3vw] font-major-mono-display font-black ml-auto"
               animate={{ opacity: 1, y: 0 }}
-              initial={{ opacity: 0, y: 200 }}
-              transition={{ duration: 1, delay: 0.6 }}
+              initial={{ opacity: 0, y: 10 }}
+              transition={{ duration: 2, delay: 1.2 }}
             >
               *BUT most call me haruxe.
             </motion.span>{" "}
@@ -280,15 +282,12 @@ const Home: NextPage = () => {
             className="flex place-items-center flex-col absolute bottom-5 left-0 right-0 space-y-3 animate-bounce place-content-center"
             style={{ opacity }}
           >
-            <h1 className="text-center font-dm-serif-display tracking-wider opacity-80 text-xl font-black">
-              LEARN MORE
-            </h1>
-            <ArrowDownThick className=" w-10 h-10" />
+            <ArrowDownThick className="2xl:w-10 2xl:h-10 w-[8vw] h-[8vw]" />
           </motion.div>
         )}
       </div>
       <div className="space-y-5 w-full md:ml-auto">
-        <div className="space-y-12 flex flex-col place-content-center">
+        <div className="space-y-[4rem] flex flex-col place-content-center">
           <div className="flex place-items-center ">
             <Job
               title="Developer and Security Researcher"
