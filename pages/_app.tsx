@@ -48,21 +48,25 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
       {!selectedProfile ? (
-        <div
+        <motion.div
           style={{
             backgroundImage: `url("/images/Space1.png")`,
             backgroundRepeat: "no-repeat",
             backgroundSize: "cover",
+            backgroundPosition: "center",
           }}
+          initial={{ backgroundSize: "cover" }}
+          animate={{ backgroundSize: "cover" }}
+          transition={{ duration: 0.5 }}
         >
-          <div className="place-content-center place-items-center mx-auto relative mb-[6rem]">
+          <div className="place-content-center place-items-center mx-auto relative">
             <Navbar />
             <div className="max-w-[1500px] place-items-center mx-auto">
               <Component {...pageProps} />
               <Footer />
             </div>
           </div>
-        </div>
+        </motion.div>
       ) : (
         <div className="bg-[#141414] h-screen place-content-center place-items-center flex">
           <motion.div
