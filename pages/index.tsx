@@ -21,7 +21,7 @@ import { StarAndCrescent } from "styled-icons/fa-solid";
 const Home: NextPage = () => {
   const { scrollYProgress, scrollY } = useScroll();
   const opacity = useTransform(scrollYProgress, [0, 0.1, 0.5, 1], [1, 1, 0, 0]);
-  const opacityKirby = useTransform(scrollYProgress, [0, 0.5], [1, 0.5]);
+  const opacityKirby = useTransform(scrollYProgress, [0, 0.7], [1, 0.7]);
 
   interface JobProps {
     title: string;
@@ -57,45 +57,143 @@ const Home: NextPage = () => {
 
     return (
       <motion.div
-        className="duration-150 flex flex-col place-items-center 2xl:space-y-5 space-y-2 mr-auto z-10"
-        whileInView={{ opacity: 1, x: 0 }}
-        initial={{ opacity: 0, x: -50 }}
-        transition={{ duration: 1.4, type: "spring" }}
+        className="duration-150 flex place-content-start z-10 w-full"
+        // whileInView={{ opacity: 1, x: 0 }}
+        // initial={{ opacity: 0, x: -50 }}
+        // transition={{ duration: 1.4, type: "spring" }}
       >
-        <div className="flex flex-col place-items-start mr-auto leading-none">
-          <Link
-            className="font-bold font-tusker 2xl:text-[7rem] md:text-[5rem] text-[11vw] uppercase hover:text-purple-200 hover:translate-x-2 translate-x-0 duration-150"
-            href={link}
-            target="_blank"
-          >
-            {company}
-          </Link>
-          <h1 className="font-bold 2xl:text-lg md:text-base text-[2vw] uppercase">
-            {title}
-            {type && " · " + type}
+        <div className="mb-auto">
+          <h1 className="font-bold text-sm text-[1.4vw] 2xl:w-[30rem] w-[30vw] lowercase font-major-mono-display ">
+            {date && date}
           </h1>
         </div>
-        <div>
-          <p className="text-zinc-300 font-mono 2xl:text-lg md:text-base text-[2.5vw] md:text-[2vw]">
-            {description}
-          </p>
-          <div className="flex flex-wrap gap-2 mt-3 font-mono">
-            {skills &&
-              skills.map((skill, index) => {
-                return (
-                  <div
-                    key={skill}
-                    className={
-                      randomBooleans[index]
-                        ? "2xl:px-5 2xl:py-3 md:py-2 md:px-4 px-[3vw] py-[2vw] 2xl:text-lg md:text-base text-[2.4vw] font-bold rounded-full outline outline-1 uppercase"
-                        : "2xl:px-5 2xl:py-3 md:py-2 md:px-4 px-[3vw] py-[2vw] 2xl:text-lg md:text-base text-[2.4vw] font-bold rounded-full outline outline-1 uppercase bg-[#fdffe4] text-black"
-                    }
-                  >
-                    {skill}
-                  </div>
-                );
-              })}
+        <div className="mb-auto">
+          <div className="flex flex-col place-items-start mr-auto leading-none mb-auto">
+            <Link
+              className="font-bold space-x-5 flex font-dm-serif-display 2xl:text-[3rem] md:text-[2rem] text-[8vw] uppercase decoration-1 hover:underline duration-150"
+              href={link}
+              target="_blank"
+            >
+              {/* <div className="2xl:h-[6rem] 2xl:w-[10.5rem] md:h-[4rem] md:w-[7rem] h-[11vw] relative">
+              <Image src={banner} fill alt="banner" className="rounded-sm" />
+            </div> */}
+              <h1>{company}</h1>
+            </Link>
+            <h1 className="font-bold 2xl:text-md md:text-base text-[1.4vw] uppercase">
+              {title}
+              {type && " · " + type}
+            </h1>
           </div>
+          <div>
+            {/* <p className="text-zinc-300 font-mono 2xl:text-lg md:text-base text-[2.5vw] md:text-[2vw]">
+              {description}
+            </p> */}
+            <div className="flex flex-wrap gap-2 mt-3 font-mono">
+              {skills &&
+                skills.map((skill, index) => {
+                  return (
+                    <div
+                      key={skill}
+                      className={
+                        randomBooleans[index]
+                          ? "md:py-2 md:px-4 px-[3vw] py-[2vw] md:text-base text-[2.4vw] font-bold outline outline-1 uppercase"
+                          : "md:py-2 md:px-4 px-[3vw] py-[2vw] md:text-base text-[2.4vw] font-bold outline outline-1 uppercase bg-[#fdffe4] text-black"
+                      }
+                    >
+                      {skill}
+                    </div>
+                  );
+                })}
+            </div>
+          </div>
+        </div>
+      </motion.div>
+    );
+  };
+
+  interface ProjectProps {
+    title: string;
+    company?: string;
+    date: string;
+    description: string;
+    link: string;
+    skills?: string[];
+    type?: string;
+    banner?: string;
+    end?: boolean;
+  }
+
+  const Project: React.FC<ProjectProps> = ({
+    title,
+    company,
+    date,
+    description,
+    link = "/",
+    skills,
+    type,
+    banner = "/",
+    end = false,
+  }) => {
+    const [randomBooleans, setRandomBooleans] = useState<boolean[]>([]);
+
+    useEffect(() => {
+      if (skills) {
+        const randomValues = skills.map(() => Math.random() < 0.5);
+        setRandomBooleans(randomValues);
+      }
+    }, [skills]);
+
+    return (
+      <motion.div
+        className="duration-150 flex place-content-start z-10 w-full"
+        // whileInView={{ opacity: 1, x: 0 }}
+        // initial={{ opacity: 0, x: -50 }}
+        // transition={{ duration: 1.4, type: "spring" }}
+      >
+        <div className="mb-auto">
+          <div className="flex flex-col text-left place-items-start mr-auto leading-none mb-auto">
+            <Link
+              className="font-bold space-x-5 flex font-dm-serif-display 2xl:text-[3rem] md:text-[2rem] text-[8vw] uppercase decoration-1 hover:underline duration-150"
+              href={link}
+              target="_blank"
+            >
+              {/* <div className="2xl:h-[6rem] 2xl:w-[10.5rem] md:h-[4rem] md:w-[7rem] h-[11vw] relative">
+              <Image src={banner} fill alt="banner" className="rounded-sm" />
+            </div> */}
+              <h1>{company}</h1>
+            </Link>
+            <h1 className="font-bold 2xl:text-md md:text-base text-[1.4vw] uppercase">
+              {title}
+              {type && " · " + type}
+            </h1>
+          </div>
+          <div>
+            {/* <p className="text-zinc-300 font-mono 2xl:text-lg md:text-base text-[2.5vw] md:text-[2vw]">
+              {description}
+            </p> */}
+            <div className="flex flex-wrap gap-2 mt-3 font-mono">
+              {skills &&
+                skills.map((skill, index) => {
+                  return (
+                    <div
+                      key={skill}
+                      className={
+                        randomBooleans[index]
+                          ? "md:py-2 md:px-4 px-[3vw] py-[2vw] md:text-base text-[2.4vw] font-bold outline outline-1 uppercase"
+                          : "md:py-2 md:px-4 px-[3vw] py-[2vw] md:text-base text-[2.4vw] font-bold outline outline-1 uppercase bg-[#fdffe4] text-black"
+                      }
+                    >
+                      {skill}
+                    </div>
+                  );
+                })}
+            </div>
+          </div>
+        </div>
+        <div className="ml-auto">
+          <h1 className="font-bold text-sm text-[1.4vw] 2xl:w-[30rem] w-[30vw] lowercase font-major-mono-display ">
+            {date && date}
+          </h1>
         </div>
       </motion.div>
     );
@@ -104,9 +202,17 @@ const Home: NextPage = () => {
   const text = "RESEARCHER";
   const [displayedLetters, setDisplayedLetters] = useState<string[]>([]);
   const [isMounted, setIsMounted] = useState(false);
+  const phrases = [
+    "let's talk",
+    "contact me",
+    "get in contact",
+    "work with me",
+  ];
+  const [randomPhrase, setRandomPhrase] = useState("");
 
   useEffect(() => {
     setIsMounted(true);
+    setRandomPhrase(phrases[Math.floor(Math.random() * phrases.length)]);
   }, []);
 
   useEffect(() => {
@@ -124,7 +230,7 @@ const Home: NextPage = () => {
   useEffect(() => {
     const handleScroll = () => {
       const scrollY = window.scrollY;
-      const newOffsetY = scrollY * 0.9; // Adjust the multiplier to increase or decrease the effect
+      const newOffsetY = scrollY * 0.1; // Adjust the multiplier to increase or decrease the effect
       controls.start({ y: newOffsetY });
     };
 
@@ -149,6 +255,7 @@ const Home: NextPage = () => {
           <motion.div
             initial={{ y: 0 }}
             animate={controls}
+            transition={{ duration: 1, type: "spring" }}
             className="2xl:w-[350px] 2xl:h-[350px] md:h-[300px] md:w-[300px] w-[40vw] h-[40vw] relative"
             style={{ opacity: opacityKirby }}
           >
@@ -156,12 +263,12 @@ const Home: NextPage = () => {
           </motion.div>
         </motion.div>
         <motion.div
-          className="flex flex-col  my-auto"
+          className="flex flex-col  my-auto w-full"
           animate={{ scale: 1, opacity: 1 }}
           initial={{ scale: 0, opacity: 0 }}
           transition={{ type: "tween" }}
         >
-          <p className="2xl:text-[15rem] md:text-[12rem] text-[25vw] font-bold font-tusker leading-none py-10 align-top flex flex-col mb-auto rounded-3xl">
+          <p className="2xl:text-[15rem] md:text-[12rem] text-[25vw] font-bold font-tusker leading-none py-10 align-top flex flex-col mb-auto rounded-3xl z-30">
             <span className="2xl:text-2xl md:text-xl text-[3vw] font-major-mono-display font-black 2xl:mb-3 mb-[2vw] z-10">
               hi, I&apos;m josh francisco-
             </span>{" "}
@@ -179,9 +286,14 @@ const Home: NextPage = () => {
                   {char}
                 </span>
               ))}
-              <span className="2xl:text-4xl text-[3vw] font-dm-serif-display font-black ml-2">
+              <motion.span
+                animate={{ opacity: 1 }}
+                initial={{ opacity: 0 }}
+                transition={{ duration: 1, delay: 1.4 }}
+                className="2xl:text-4xl text-[3vw] font-dm-serif-display font-black ml-2"
+              >
                 &
-              </span>
+              </motion.span>
             </span>
             <motion.span
               animate={{ opacity: 1, x: 0 }}
@@ -194,10 +306,28 @@ const Home: NextPage = () => {
               className="2xl:text-2xl md:text-xl text-[3vw] font-major-mono-display font-black ml-auto"
               animate={{ opacity: 1, y: 0 }}
               initial={{ opacity: 0, y: 10 }}
-              transition={{ duration: 2, delay: 1.2 }}
+              transition={{ duration: 1, delay: 1.2 }}
             >
-              *BUT most call me haruxe.
+              but most call me haruxe.
             </motion.span>{" "}
+            <motion.button
+              className="2xl:text-2xl md:text-xl text-[3vw] font-major-mono-display font-black text-black ml-auto px-4 py-2 bg-white mt-5"
+              initial={{
+                backdropFilter: "blur(20px)",
+                backgroundColor: "#0000003d",
+                opacity: 0,
+                y: 10,
+              }}
+              animate={{
+                backdropFilter: "blur(0px)",
+                backgroundColor: "#FFFFFF",
+                opacity: 1,
+                y: 0,
+              }}
+              transition={{ duration: 1, delay: 1.8 }}
+            >
+              <Link href="/about">{randomPhrase}</Link>
+            </motion.button>
           </p>
 
           {/* <p className="text-zinc-400 font-black text-xl font-major-mono-display">
@@ -205,75 +335,7 @@ const Home: NextPage = () => {
             reliability.
           </p> */}
         </motion.div>
-        {/* <div className="mt-auto place-items-center absolute right-0 bottom-10 place-content-between flex">
-          <motion.div
-            animate={{ opacity: 1, x: 0 }}
-            initial={{ opacity: 0, x: 100 }}
-            transition={{ duration: 1.2, delay: 1 }}
-          >
-            <p className="text-lg mt-auto font-mono space-y-12 p-10 mr-auto w-1/2">
-              Back in 2019, I started my journey in programming. I began
-              tinkering with game development, making{" "}
-              <Link
-                href="https://harux.itch.io/"
-                className="font-bold text-[#a5bdca] duration-150"
-                target="_blank"
-              >
-                independent games
-              </Link>{" "}
-              with Unity and C#. Eventually I was enthralled by the world of
-              blockchain technology and the potential it has to change the
-              world.
-              <br /> <br />
-              Since then, I&apos;ve had the opportunity to work with DeFi
-              protocols like{" "}
-              <Link
-                href="https://baofinance.io"
-                className="font-bold text-[#a5bdca]  duration-150 "
-                target="_blank"
-              >
-                BAO Finance
-              </Link>{" "}
-              and{" "}
-              <Link
-                href="https://bloom.garden"
-                className="font-bold text-[#a5bdca] duration-150 "
-                target="_blank"
-              >
-                Blueberry Foundation
-              </Link>
-              - designing, developing, and securing smart contracts and
-              front-end infrastructure. In my free time I&apos;ve also written{" "}
-              <Link
-                href="https://mirror.xyz/haruxe.eth"
-                className="font-bold text-[#a5bdca] duration-150 "
-                target="_blank"
-              >
-                articles
-              </Link>
-              , been a guest on a{" "}
-              <Link
-                href="https://www.youtube.com/watch?v=20znoiLt2ds"
-                className="font-bold text-[#a5bdca] duration-150 "
-                target="_blank"
-              >
-                podcast
-              </Link>
-              , and built tools for NFT communities like{" "}
-              <Link
-                href="https://kaijukingzlog.vercel.app/"
-                className="font-bold text-[#a5bdca] duration-150 "
-                target="_blank"
-              >
-                Kaiju Kingz
-              </Link>
-              .
-              <br /> <br />
-              When I&apos;m not building, I&apos;m usually playing video games,
-              at the gym, or hanging out with my dog.
-            </p>
-          </motion.div>
-        </div> */}
+
         {scrollYProgress.get() <= 0 && (
           <motion.div
             animate={{ opacity: 1 }}
@@ -286,11 +348,88 @@ const Home: NextPage = () => {
           </motion.div>
         )}
       </div>
-      <div className="space-y-5 w-full md:ml-auto">
-        <div className="space-y-[4rem] flex flex-col place-content-center">
+      {/* <div className="place-items-center place-content-between flex">
+        <motion.div
+          animate={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, x: 100 }}
+          transition={{ duration: 1.2, delay: 1 }}
+        >
+          <p className="text-2xl font-dm-serif-display space-y-1">
+            Back in 2019, I started my journey in programming. I began tinkering
+            with game development, making{" "}
+            <Link
+              href="https://harux.itch.io/"
+              className="font-bold text-[#a5bdca] duration-150"
+              target="_blank"
+            >
+              independent games
+            </Link>{" "}
+            with Unity and C#. Eventually I was enthralled by the world of
+            blockchain technology and the potential it has to change the world.
+            <br /> <br />
+            Since then, I&apos;ve had the opportunity to work with DeFi
+            protocols like{" "}
+            <Link
+              href="https://baofinance.io"
+              className="font-bold text-[#a5bdca]  duration-150 "
+              target="_blank"
+            >
+              BAO Finance
+            </Link>{" "}
+            and{" "}
+            <Link
+              href="https://bloom.garden"
+              className="font-bold text-[#a5bdca] duration-150 "
+              target="_blank"
+            >
+              Blueberry Foundation
+            </Link>
+            - designing, developing, and securing smart contracts and front-end
+            infrastructure. In my free time I&apos;ve also written{" "}
+            <Link
+              href="https://mirror.xyz/haruxe.eth"
+              className="font-bold text-[#a5bdca] duration-150 "
+              target="_blank"
+            >
+              articles
+            </Link>
+            , been a guest on a{" "}
+            <Link
+              href="https://www.youtube.com/watch?v=20znoiLt2ds"
+              className="font-bold text-[#a5bdca] duration-150 "
+              target="_blank"
+            >
+              podcast
+            </Link>
+            , and built tools for NFT communities like{" "}
+            <Link
+              href="https://kaijukingzlog.vercel.app/"
+              className="font-bold text-[#a5bdca] duration-150 "
+              target="_blank"
+            >
+              Kaiju Kingz
+            </Link>
+            .
+            <br /> <br />
+            When I&apos;m not building, I&apos;m usually playing video games, at
+            the gym, or hanging out with my dog.
+          </p>
+        </motion.div>
+      </div> */}
+      <div className="space-y-2 w-full z-30 ">
+        <div className="flex space-x-5 place-content-start place-items-end">
+          <div className="relative w-[100px] h-[80px]">
+            <Image src="/images/dedede.gif" quality={100} fill alt="banner" />
+          </div>
+          <h1 className="z-30 text-left mr-auto font-bold font-dm-serif-display 2xl:text-[3rem] md:text-[2rem] text-[8vw] uppercase decoration-1 hover:underline duration-150">
+            WORK EXPERIENCE
+          </h1>
+        </div>
+        <div className="space-y-[4rem] z-30 flex flex-col place-content-center">
+          <div className="flex w-full h-[1px] bg-gray-500 my-3" />
           <div className="flex place-items-center ">
             <Job
-              title="Developer and Security Researcher"
+              title="Developer & Security Researcher"
               company="BAO Finance"
               date="Nov 2022 - Present"
               link="https://baofinance.io"
@@ -308,7 +447,21 @@ const Home: NextPage = () => {
               banner="/images/BaoBanner.png"
             />
           </div>
-
+          <div className="flex w-full h-[1px] bg-gray-500 my-3" />
+          <div className="flex place-items-center">
+            <Job
+              title="Developer"
+              company="WEB3SG"
+              date="May 2023 - PRESENT"
+              link="https://web3sg.net/"
+              description="Handle deployments for multiple projects, while also developing front-end components and smart contracts for various DeFi protocols."
+              skills={["NextJS", "Tailwindcss", "Solidity", "rainbowkit"]}
+              type="Contract"
+              banner="/images/BlueberryBanner.png"
+              end
+            />
+          </div>
+          <div className="flex w-full h-[1px] bg-gray-500 my-3" />
           <div className="flex place-items-center">
             <Job
               title="Developer"
@@ -329,17 +482,105 @@ const Home: NextPage = () => {
               end
             />
           </div>
-          <div className="flex place-items-center ">
-            <Job
-              title="Independent Game Developer"
-              company="game development"
-              date="May 2020 - Jan 2022"
-              link="https://harux.itch.io/"
-              description="Actively competed in multiple game jams, honing my skills in rapid development and problem-solving under tight deadlines, while also designing, coding, and deploying games using Unity3D with C#."
-              skills={["Unity", "C#", "Blender", "Photon"]}
-              banner="/images/HaruxBanner.png"
+
+          <div className="flex w-full h-[1px] bg-gray-500 my-3" />
+          <Job
+            title="game development"
+            company="Indie Game Developer"
+            date="May 2020 - Jan 2022"
+            link="https://harux.itch.io/"
+            description="Actively competed in multiple game jams, honing my skills in rapid development and problem-solving under tight deadlines, while also designing, coding, and deploying games using Unity3D with C#."
+            skills={["Unity", "C#", "Blender", "Photon"]}
+            banner="/images/HaruxBanner.png"
+          />
+          <div className="flex w-full h-[1px] bg-gray-500 my-3" />
+        </div>
+      </div>
+
+      <div className="space-y-2 w-full z-30 text-right">
+        <div className="flex space-x-5 place-content-end place-items-end">
+          <div className="relative ml-auto w-[80px] h-[80px]">
+            <Image
+              src="/images/kirbycook.gif"
+              quality={100}
+              fill
+              alt="banner"
             />
           </div>
+          <h1 className="z-30 text-right ml-auto font-bold font-dm-serif-display 2xl:text-[3rem] md:text-[2rem] text-[8vw] uppercase decoration-1 hover:underline duration-150">
+            PROJECTS
+          </h1>
+        </div>
+
+        <div className="space-y-[4rem] z-30 flex flex-col place-content-center">
+          <div className="flex w-full h-[1px] bg-gray-500 my-3" />
+          <div className="flex place-items-center ">
+            <Project
+              title="Developer & Security Researcher"
+              company="BAO Finance"
+              date="Nov 2022 - Present"
+              link="https://baofinance.io"
+              description="Continuously ensure the security of multiple Ethereum smart contracts on our platform. Regularly handle and address Immunefi reports, lead incident response efforts, and innovate on the design of front-end components to improve user experience and overall platform usability."
+              skills={[
+                "React",
+                "Tailwindcss",
+                "Solidity",
+                "Foundry",
+                "TheGraph",
+                "Chainlink",
+                "Tally.xyz",
+              ]}
+              type="Part-Time"
+              banner="/images/BaoBanner.png"
+            />
+          </div>
+          <div className="flex w-full h-[1px] bg-gray-500 my-3" />
+          <div className="flex place-items-center">
+            <Project
+              title="Developer"
+              company="WEB3SG"
+              date="May 2023 - PRESENT"
+              link="https://web3sg.net/"
+              description="Handle deployments for multiple projects, while also developing front-end components and smart contracts for various DeFi protocols."
+              skills={["NextJS", "Tailwindcss", "Solidity", "rainbowkit"]}
+              type="Contract"
+              banner="/images/BlueberryBanner.png"
+              end
+            />
+          </div>
+          <div className="flex w-full h-[1px] bg-gray-500 my-3" />
+          <div className="flex place-items-center">
+            <Project
+              title="Developer"
+              company="Blueberry Foundation"
+              date="April 2023 - Sept 2023"
+              link="https://bloom.garden"
+              description="Engage in the development of front-end, integration, and smart contracts with a strong focus on complex tokenomics and re-usability, while also conducting self-audits for protocol contracts and facilitating communication with external auditors to ensure robust security measures."
+              skills={[
+                "NextJS",
+                "Tailwindcss",
+                "Solidity",
+                "Foundry",
+                "GraphQL",
+                "wagmi",
+              ]}
+              type="Contract"
+              banner="/images/BlueberryBanner.png"
+              end
+            />
+          </div>
+
+          <div className="flex w-full h-[1px] bg-gray-500 my-3" />
+          <Project
+            title="game development"
+            company="Indie Game Developer"
+            date="May 2020 - Jan 2022"
+            link="https://harux.itch.io/"
+            description="Actively competed in multiple game jams, honing my skills in rapid development and problem-solving under tight deadlines, while also designing, coding, and deploying games using Unity3D with C#."
+            skills={["Unity", "C#", "Blender", "Photon"]}
+            banner="/images/HaruxBanner.png"
+          />
+          <div className="flex w-full h-[1px] bg-gray-500 my-3" />
         </div>
       </div>
     </motion.div>
