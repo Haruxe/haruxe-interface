@@ -57,13 +57,13 @@ const Home: NextPage = () => {
 
     return (
       <motion.div
-        className="duration-150 flex place-content-start z-10 w-full"
+        className="duration-150 flex flex-wrap place-content-start z-10 w-full"
         // whileInView={{ opacity: 1, x: 0 }}
         // initial={{ opacity: 0, x: -50 }}
         // transition={{ duration: 1.4, type: "spring" }}
       >
         <div className="mb-auto">
-          <h1 className="font-bold text-sm text-[1.4vw] 2xl:w-[30rem] w-[30vw] lowercase font-major-mono-display ">
+          <h1 className="font-bold text-sm text-[1.4vw] 2xl:w-[30rem] md:w-[30vw] lowercase font-major-mono-display ">
             {date && date}
           </h1>
         </div>
@@ -79,7 +79,7 @@ const Home: NextPage = () => {
             </div> */}
               <h1>{company}</h1>
             </Link>
-            <h1 className="font-bold 2xl:text-md md:text-base text-[1.4vw] uppercase">
+            <h1 className="font-bold 2xl:text-md md:text-base text-[3vw] uppercase">
               {title}
               {type && " · " + type}
             </h1>
@@ -141,7 +141,7 @@ const Home: NextPage = () => {
 
     return (
       <motion.div
-        className="duration-150 flex gap-5 place-content-start z-10 w-full"
+        className="duration-150 flex flex-wrap gap-5 place-content-start z-10 w-full"
         // whileInView={{ opacity: 1, x: 0 }}
         // initial={{ opacity: 0, x: -50 }}
         // transition={{ duration: 1.4, type: "spring" }}
@@ -159,7 +159,7 @@ const Home: NextPage = () => {
               >
                 <h1>{company}</h1>
               </Link>
-              <h1 className="font-bold 2xl:text-md md:text-base text-[1.4vw] uppercase">
+              <h1 className="font-bold 2xl:text-md md:text-base text-[3vw] uppercase">
                 {title}
               </h1>
             </div>
@@ -236,6 +236,15 @@ const Home: NextPage = () => {
         <title>Haruxe</title>
         <meta name="description" content="Home of Haruxe's Portfolio" />
         <link rel="icon" href="/favicon.ico" />
+        <meta property="og:title" content="Haruxe's Portfolio" />
+        <meta
+          property="og:description"
+          content="Learn more about Haruxe's work and projects."
+        />
+        <meta
+          property="og:image"
+          content="https://haruxe.xyz/images/preview.png"
+        />
       </Head>
       <div className="relative flex py-[5rem] h-screen ">
         <motion.div
@@ -422,7 +431,7 @@ const Home: NextPage = () => {
             EXPERIENCE
           </h1>
         </div>
-        <div className="space-y-[4rem] z-30 flex flex-col place-content-center">
+        <div className="space-y-4 md:space-y-[4rem] z-30 flex flex-col place-content-center">
           <div className="flex w-full h-[1px] bg-gray-500 my-3" />
           <div className="flex place-items-center ">
             <Job
@@ -444,7 +453,7 @@ const Home: NextPage = () => {
               banner="/images/BaoBanner.png"
             />
           </div>
-          <div className="flex w-full h-[1px] bg-gray-500 my-3" />
+          <div className="flex w-full h-[1px] bg-gray-500 my-1 md:my-3" />
           <div className="flex place-items-center">
             <Job
               title="Developer"
@@ -458,7 +467,7 @@ const Home: NextPage = () => {
               end
             />
           </div>
-          <div className="flex w-full h-[1px] bg-gray-500 my-3" />
+          <div className="flex w-full h-[1px] bg-gray-500 my-1 md:my-3" />
           <div className="flex place-items-center">
             <Job
               title="Developer"
@@ -479,7 +488,7 @@ const Home: NextPage = () => {
               end
             />
           </div>
-          <div className="flex w-full h-[1px] bg-gray-500 my-3" />
+          <div className="flex w-full h-[1px] bg-gray-500 my-1 md:my-3" />
           <Job
             title="game development"
             company="Indie Game Developer"
@@ -489,7 +498,7 @@ const Home: NextPage = () => {
             skills={["Unity", "C#", "Blender", "Photon"]}
             banner="/images/HaruxBanner.png"
           />
-          <div className="flex w-full h-[1px] bg-gray-500 my-3" />
+          <div className="flex w-full h-[1px] bg-gray-500 my-1 md:my-3" />
         </div>
       </div>
       <div className="w-full place-items-center place-content-center flex ">
@@ -504,8 +513,8 @@ const Home: NextPage = () => {
             MY ARTICLES
           </h1>
         </div>
-        <div className="space-y-[4rem] z-30 flex flex-col place-content-center">
-          <div className="flex w-full h-[1px] bg-gray-500 my-3" />
+        <div className="space-y-4 md:space-y-[4rem] z-30 flex flex-col place-content-center">
+          <div className="flex w-full h-[1px] bg-gray-500 my-1 md:my-3" />
           <Project
             title="details how the current and previous uniswap versions work"
             company="Uniswap zero to mastery"
@@ -513,7 +522,7 @@ const Home: NextPage = () => {
             link="https://mirror.xyz/haruxe.eth/q-2jXIvcXI4cPDgmQLac1L_iQ6zXgbmCtIhgCHnabc8"
             banner="/images/mirror1.png"
           />
-          <div className="flex w-full h-[1px] bg-gray-500 my-3" />
+          <div className="flex w-full h-[1px] bg-gray-500 my-1 md:my-3" />
           <div className="flex place-items-center ">
             <Project
               title="explaination of how merkle trees and proofs work and why they are useful"
@@ -523,7 +532,7 @@ const Home: NextPage = () => {
               banner="/images/mirror2.png"
             />
           </div>
-          <div className="flex w-full h-[1px] bg-gray-500 my-3" />
+          <div className="flex w-full h-[1px] bg-gray-500 my-1 md:my-3" />
           <div className="flex place-items-center">
             <Project
               title="written during the heat of sec regulations on crypto"
@@ -534,7 +543,7 @@ const Home: NextPage = () => {
               end
             />
           </div>
-          <div className="flex w-full h-[1px] bg-gray-500 my-3" />
+          <div className="flex w-full h-[1px] bg-gray-500 my-1 md:my-3" />
           <div className="flex place-items-center">
             <Project
               title="tips and tricks to optimize solidity contracts"
@@ -546,7 +555,7 @@ const Home: NextPage = () => {
             />
           </div>
 
-          <div className="flex w-full h-[1px] bg-gray-500 my-3" />
+          <div className="flex w-full h-[1px] bg-gray-500 my-1 md:my-3" />
         </div>
       </div>
       <div className="w-full place-items-center place-content-center flex ">
@@ -566,8 +575,8 @@ const Home: NextPage = () => {
             PROJECTS
           </h1>
         </div>
-        <div className="space-y-[4rem] z-30 flex flex-col place-content-center">
-          <div className="flex w-full h-[1px] bg-gray-500 my-3" />
+        <div className="space-y-4 md:space-y-[4rem] z-30 flex flex-col place-content-center">
+          <div className="flex w-full h-[1px] bg-gray-500 my-1 md:my-3" />
           <Project
             title="bug bounty and auditing security collective"
             company="koroksec"
@@ -576,7 +585,7 @@ const Home: NextPage = () => {
             skills={["Immunefi", "foundry", "brownie", "exploits"]}
             banner="/images/koroksec.png"
           />
-          <div className="flex w-full h-[1px] bg-gray-500 my-3" />
+          <div className="flex w-full h-[1px] bg-gray-500 my-1 md:my-3" />
           <div className="flex place-items-center ">
             <Project
               title="Unity game I built in a week for a game-jam competition."
@@ -587,7 +596,7 @@ const Home: NextPage = () => {
               banner="/images/hardbreach.png"
             />
           </div>
-          <div className="flex w-full h-[1px] bg-gray-500 my-3" />
+          <div className="flex w-full h-[1px] bg-gray-500 my-1 md:my-3" />
           <div className="flex place-items-center">
             <Project
               title="Webapp built for the KaijuKingz community to monitor value."
@@ -599,7 +608,7 @@ const Home: NextPage = () => {
               end
             />
           </div>
-          <div className="flex w-full h-[1px] bg-gray-500 my-3" />
+          <div className="flex w-full h-[1px] bg-gray-500 my-1 md:my-3" />
           <div className="flex place-items-center">
             <Project
               title="Guest on the Immunefi podcast to discuss merkle trees and proofs"
@@ -611,7 +620,7 @@ const Home: NextPage = () => {
             />
           </div>
 
-          <div className="flex w-full h-[1px] bg-gray-500 my-3" />
+          <div className="flex w-full h-[1px] bg-gray-500 my-1 md:my-3" />
         </div>
       </div>
     </motion.div>
