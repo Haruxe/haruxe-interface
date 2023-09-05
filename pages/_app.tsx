@@ -8,7 +8,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const { scrollYProgress, scrollY } = useScroll();
-  const opacity = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
+  const opacity = useTransform(scrollYProgress, [0, 0.3], [1, 0.2]);
 
   return (
     <>

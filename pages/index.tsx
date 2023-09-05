@@ -15,13 +15,13 @@ import {
 import { useEffect, useRef, useState } from "react";
 import { ArrowDownThick } from "styled-icons/typicons";
 import { DotFill } from "styled-icons/octicons";
-import { Star } from "styled-icons/bootstrap";
+import { Dot, Star } from "styled-icons/bootstrap";
 import { StarAndCrescent } from "styled-icons/fa-solid";
 
 const Home: NextPage = () => {
   const { scrollYProgress, scrollY } = useScroll();
   const opacity = useTransform(scrollYProgress, [0, 0.1, 0.5, 1], [1, 1, 0, 0]);
-  const opacityKirby = useTransform(scrollYProgress, [0, 0.7], [1, 0.7]);
+  const opacityKirby = useTransform(scrollYProgress, [0, 0.5], [1, 0.3]);
 
   interface JobProps {
     title: string;
@@ -115,10 +115,8 @@ const Home: NextPage = () => {
     title: string;
     company?: string;
     date: string;
-    description: string;
     link: string;
     skills?: string[];
-    type?: string;
     banner?: string;
     end?: boolean;
   }
@@ -127,10 +125,8 @@ const Home: NextPage = () => {
     title,
     company,
     date,
-    description,
     link = "/",
     skills,
-    type,
     banner = "/",
     end = false,
   }) => {
@@ -145,55 +141,51 @@ const Home: NextPage = () => {
 
     return (
       <motion.div
-        className="duration-150 flex place-content-start z-10 w-full"
+        className="duration-150 flex gap-5 place-content-start z-10 w-full"
         // whileInView={{ opacity: 1, x: 0 }}
         // initial={{ opacity: 0, x: -50 }}
         // transition={{ duration: 1.4, type: "spring" }}
       >
-        <div className="mb-auto">
-          <div className="flex flex-col text-left place-items-start mr-auto leading-none mb-auto">
-            <Link
-              className="font-bold space-x-5 flex font-dm-serif-display 2xl:text-[3rem] md:text-[2rem] text-[8vw] uppercase decoration-1 hover:underline duration-150"
-              href={link}
-              target="_blank"
-            >
-              {/* <div className="2xl:h-[6rem] 2xl:w-[10.5rem] md:h-[4rem] md:w-[7rem] h-[11vw] relative">
-              <Image src={banner} fill alt="banner" className="rounded-sm" />
-            </div> */}
-              <h1>{company}</h1>
-            </Link>
-            <h1 className="font-bold 2xl:text-md md:text-base text-[1.4vw] uppercase">
-              {title}
-              {type && " · " + type}
-            </h1>
-          </div>
-          <div>
-            {/* <p className="text-zinc-300 font-mono 2xl:text-lg md:text-base text-[2.5vw] md:text-[2vw]">
+        <div className="h-[6rem] w-[10.5rem] flex-none relative place-items-center my-auto mr-5">
+          <Image src={banner} fill alt="banner" className="rounded-sm" />
+        </div>
+        <div className="flex-col md:flex-row flex place-content-between">
+          <div className="mb-auto ">
+            <div className="flex flex-col text-left place-items-start mr-auto leading-none mb-auto">
+              <Link
+                className="font-bold space-x-5 flex font-dm-serif-display 2xl:text-[3rem] md:text-[2rem] text-[8vw] uppercase decoration-1 hover:underline duration-150"
+                href={link}
+                target="_blank"
+              >
+                <h1>{company}</h1>
+              </Link>
+              <h1 className="font-bold 2xl:text-md md:text-base text-[1.4vw] uppercase">
+                {title}
+              </h1>
+            </div>
+            <div>
+              {/* <p className="text-zinc-300 font-mono 2xl:text-lg md:text-base text-[2.5vw] md:text-[2vw]">
               {description}
             </p> */}
-            <div className="flex flex-wrap gap-2 mt-3 font-mono">
-              {skills &&
-                skills.map((skill, index) => {
-                  return (
-                    <div
-                      key={skill}
-                      className={
-                        randomBooleans[index]
-                          ? "md:py-2 md:px-4 px-[3vw] py-[2vw] md:text-base text-[2.4vw] font-bold outline outline-1 uppercase"
-                          : "md:py-2 md:px-4 px-[3vw] py-[2vw] md:text-base text-[2.4vw] font-bold outline outline-1 uppercase bg-[#fdffe4] text-black"
-                      }
-                    >
-                      {skill}
-                    </div>
-                  );
-                })}
+              <div className="flex flex-wrap gap-2 mt-3 font-mono">
+                {skills &&
+                  skills.map((skill, index) => {
+                    return (
+                      <div
+                        key={skill}
+                        className={
+                          randomBooleans[index]
+                            ? "md:py-2 md:px-4 px-[3vw] py-[2vw] md:text-base text-[2.4vw] font-bold outline outline-1 uppercase"
+                            : "md:py-2 md:px-4 px-[3vw] py-[2vw] md:text-base text-[2.4vw] font-bold outline outline-1 uppercase bg-[#fdffe4] text-black"
+                        }
+                      >
+                        {skill}
+                      </div>
+                    );
+                  })}
+              </div>
             </div>
           </div>
-        </div>
-        <div className="ml-auto">
-          <h1 className="font-bold text-sm text-[1.4vw] 2xl:w-[30rem] w-[30vw] lowercase font-major-mono-display ">
-            {date && date}
-          </h1>
         </div>
       </motion.div>
     );
@@ -230,7 +222,7 @@ const Home: NextPage = () => {
   useEffect(() => {
     const handleScroll = () => {
       const scrollY = window.scrollY;
-      const newOffsetY = scrollY * 0.1; // Adjust the multiplier to increase or decrease the effect
+      const newOffsetY = scrollY * 0.9; // Adjust the multiplier to increase or decrease the effect
       controls.start({ y: newOffsetY });
     };
 
@@ -419,10 +411,15 @@ const Home: NextPage = () => {
       <div className="space-y-2 w-full z-30 ">
         <div className="flex space-x-5 place-content-start place-items-end">
           <div className="relative w-[100px] h-[80px]">
-            <Image src="/images/dedede.gif" quality={100} fill alt="banner" />
+            <Image
+              src="/images/kirbycook.gif"
+              quality={100}
+              fill
+              alt="banner"
+            />
           </div>
-          <h1 className="z-30 text-left mr-auto font-bold font-dm-serif-display 2xl:text-[3rem] md:text-[2rem] text-[8vw] uppercase decoration-1 hover:underline duration-150">
-            WORK EXPERIENCE
+          <h1 className="z-30 text-left mr-auto font-bold font-dm-serif-display 2xl:text-[3rem] md:text-[2rem] text-[8vw] uppercase decoration-1 duration-150">
+            EXPERIENCE
           </h1>
         </div>
         <div className="space-y-[4rem] z-30 flex flex-col place-content-center">
@@ -482,7 +479,6 @@ const Home: NextPage = () => {
               end
             />
           </div>
-
           <div className="flex w-full h-[1px] bg-gray-500 my-3" />
           <Job
             title="game development"
@@ -496,90 +492,125 @@ const Home: NextPage = () => {
           <div className="flex w-full h-[1px] bg-gray-500 my-3" />
         </div>
       </div>
-
+      <div className="w-full place-items-center place-content-center flex ">
+        <DotFill className="w-10 h-10 mx-auto flex my-12" />
+      </div>
       <div className="space-y-2 w-full z-30 text-right">
-        <div className="flex space-x-5 place-content-end place-items-end">
-          <div className="relative ml-auto w-[80px] h-[80px]">
+        <div className="flex space-x-5 place-content-start place-items-end">
+          <div className="relative w-[100px] h-[80px]">
+            <Image src="/images/meta.gif" quality={100} fill alt="banner" />
+          </div>
+          <h1 className="z-30 text-left mr-auto font-bold font-dm-serif-display 2xl:text-[3rem] md:text-[2rem] text-[8vw] uppercase decoration-1 duration-150">
+            MY ARTICLES
+          </h1>
+        </div>
+        <div className="space-y-[4rem] z-30 flex flex-col place-content-center">
+          <div className="flex w-full h-[1px] bg-gray-500 my-3" />
+          <Project
+            title="details how the current and previous uniswap versions work"
+            company="Uniswap zero to mastery"
+            date="May 2020 - Jan 2022"
+            link="https://mirror.xyz/haruxe.eth/q-2jXIvcXI4cPDgmQLac1L_iQ6zXgbmCtIhgCHnabc8"
+            banner="/images/mirror1.png"
+          />
+          <div className="flex w-full h-[1px] bg-gray-500 my-3" />
+          <div className="flex place-items-center ">
+            <Project
+              title="explaination of how merkle trees and proofs work and why they are useful"
+              company="merkle trees and proofs"
+              date="January 2022"
+              link="https://mirror.xyz/haruxe.eth/Gg7UG4hctOHyteVeRX7w1Ac9m1gAoCs8uuiWx3WwVz4"
+              banner="/images/mirror2.png"
+            />
+          </div>
+          <div className="flex w-full h-[1px] bg-gray-500 my-3" />
+          <div className="flex place-items-center">
+            <Project
+              title="written during the heat of sec regulations on crypto"
+              company="regulation terrorism"
+              date="April 2023 - Sept 2023"
+              link="https://mirror.xyz/haruxe.eth/UUkAX6QLPzippSJstT6f5QOWYSe1SLbaEvZxygPIh50"
+              banner="/images/mirror3.png"
+              end
+            />
+          </div>
+          <div className="flex w-full h-[1px] bg-gray-500 my-3" />
+          <div className="flex place-items-center">
+            <Project
+              title="tips and tricks to optimize solidity contracts"
+              company="solidity gas optimizations"
+              date="April 2023 - Sept 2023"
+              link="https://mirror.xyz/haruxe.eth/DW5verFv8KsYOBC0SxqWORYry17kPdeS94JqOVkgxAA"
+              banner="/images/mirror4.png"
+              end
+            />
+          </div>
+
+          <div className="flex w-full h-[1px] bg-gray-500 my-3" />
+        </div>
+      </div>
+      <div className="w-full place-items-center place-content-center flex ">
+        <DotFill className="w-10 h-10 mx-auto flex my-12" />
+      </div>
+      <div className="space-y-2 w-full z-30 text-right">
+        <div className="flex space-x-5 place-content-start place-items-end">
+          <div className="relative w-[100px] h-[80px]">
             <Image
-              src="/images/kirbycook.gif"
+              src="/images/kirbyjump.gif"
               quality={100}
               fill
               alt="banner"
             />
           </div>
-          <h1 className="z-30 text-right ml-auto font-bold font-dm-serif-display 2xl:text-[3rem] md:text-[2rem] text-[8vw] uppercase decoration-1 hover:underline duration-150">
+          <h1 className="z-30 text-left mr-auto font-bold font-dm-serif-display 2xl:text-[3rem] md:text-[2rem] text-[8vw] uppercase decoration-1 duration-150">
             PROJECTS
           </h1>
         </div>
-
         <div className="space-y-[4rem] z-30 flex flex-col place-content-center">
+          <div className="flex w-full h-[1px] bg-gray-500 my-3" />
+          <Project
+            title="bug bounty and auditing security collective"
+            company="koroksec"
+            date="May 2020 - Jan 2022"
+            link="https://koroksec.xyz"
+            skills={["Immunefi", "foundry", "brownie", "exploits"]}
+            banner="/images/koroksec.png"
+          />
           <div className="flex w-full h-[1px] bg-gray-500 my-3" />
           <div className="flex place-items-center ">
             <Project
-              title="Developer & Security Researcher"
-              company="BAO Finance"
-              date="Nov 2022 - Present"
-              link="https://baofinance.io"
-              description="Continuously ensure the security of multiple Ethereum smart contracts on our platform. Regularly handle and address Immunefi reports, lead incident response efforts, and innovate on the design of front-end components to improve user experience and overall platform usability."
-              skills={[
-                "React",
-                "Tailwindcss",
-                "Solidity",
-                "Foundry",
-                "TheGraph",
-                "Chainlink",
-                "Tally.xyz",
-              ]}
-              type="Part-Time"
-              banner="/images/BaoBanner.png"
+              title="Unity game I built in a week for a game-jam competition."
+              company="hardbreach"
+              date="January 2022"
+              link="https://harux.itch.io/hardbreach"
+              skills={["unity", "c#", "blender", "photoshop", "figma"]}
+              banner="/images/hardbreach.png"
             />
           </div>
           <div className="flex w-full h-[1px] bg-gray-500 my-3" />
           <div className="flex place-items-center">
             <Project
-              title="Developer"
-              company="WEB3SG"
-              date="May 2023 - PRESENT"
-              link="https://web3sg.net/"
-              description="Handle deployments for multiple projects, while also developing front-end components and smart contracts for various DeFi protocols."
-              skills={["NextJS", "Tailwindcss", "Solidity", "rainbowkit"]}
-              type="Contract"
-              banner="/images/BlueberryBanner.png"
+              title="Webapp built for the KaijuKingz community to monitor value."
+              company="kaiju extractions"
+              date="April 2023 - Sept 2023"
+              link="https://kaijukingzlog.vercel.app/"
+              skills={["react", "Tailwindcss", "GraphQL", "ethers"]}
+              banner="/images/KaijuLogs.png"
               end
             />
           </div>
           <div className="flex w-full h-[1px] bg-gray-500 my-3" />
           <div className="flex place-items-center">
             <Project
-              title="Developer"
-              company="Blueberry Foundation"
+              title="Guest on the Immunefi podcast to discuss merkle trees and proofs"
+              company="Immunefi podcast"
               date="April 2023 - Sept 2023"
-              link="https://bloom.garden"
-              description="Engage in the development of front-end, integration, and smart contracts with a strong focus on complex tokenomics and re-usability, while also conducting self-audits for protocol contracts and facilitating communication with external auditors to ensure robust security measures."
-              skills={[
-                "NextJS",
-                "Tailwindcss",
-                "Solidity",
-                "Foundry",
-                "GraphQL",
-                "wagmi",
-              ]}
-              type="Contract"
-              banner="/images/BlueberryBanner.png"
+              link="https://www.youtube.com/watch?v=20znoiLt2ds"
+              banner="/images/immunefi.png"
               end
             />
           </div>
 
-          <div className="flex w-full h-[1px] bg-gray-500 my-3" />
-          <Project
-            title="game development"
-            company="Indie Game Developer"
-            date="May 2020 - Jan 2022"
-            link="https://harux.itch.io/"
-            description="Actively competed in multiple game jams, honing my skills in rapid development and problem-solving under tight deadlines, while also designing, coding, and deploying games using Unity3D with C#."
-            skills={["Unity", "C#", "Blender", "Photon"]}
-            banner="/images/HaruxBanner.png"
-          />
           <div className="flex w-full h-[1px] bg-gray-500 my-3" />
         </div>
       </div>
