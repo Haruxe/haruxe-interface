@@ -5,6 +5,7 @@ import type { AppProps } from "next/app";
 import { useState } from "react";
 import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
+import Head from "next/head";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const { scrollYProgress, scrollY } = useScroll();
@@ -12,6 +13,33 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <>
+      <Head>
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:site" content="@haruxeETH" />
+        <meta
+          name="twitter:title"
+          content="Haruxe - Web Developer and Security Researcher"
+        />
+        <meta
+          name="twitter:description"
+          content="Learn more about Haruxe's work and projects."
+        />
+        <meta
+          name="twitter:image"
+          content="https://haruxe.xyz/images/preview.png"
+        />
+        <meta name="description" content="Home of Haruxe's Portfolio" />
+        <link rel="icon" href="/favicon.ico" />
+        <meta property="og:title" content="Haruxe's Portfolio" />
+        <meta
+          property="og:description"
+          content="Learn more about Haruxe's work and projects."
+        />
+        <meta
+          property="og:image"
+          content="https://haruxe.xyz/images/preview.png"
+        />
+      </Head>
       <motion.div
         animate={{ opacity: 1 }}
         initial={{ opacity: 0 }}

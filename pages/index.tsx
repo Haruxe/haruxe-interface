@@ -151,7 +151,10 @@ const Home: NextPage = () => {
         </div>
         <div className="flex-col md:flex-row flex place-content-between">
           <div className="mb-auto ">
-            <div className="flex flex-col text-left place-items-start mr-auto leading-none mb-auto">
+            <div className="flex flex-col text-left place-items-start place-content-center mr-auto leading-none mb-auto">
+              <p className=" font-major-mono-display lowercase">
+                {date && date}
+              </p>
               <Link
                 className="font-bold space-x-5 flex font-dm-serif-display 2xl:text-[3rem] md:text-[2rem] text-[8vw] uppercase decoration-1 hover:underline duration-150"
                 href={link}
@@ -222,7 +225,7 @@ const Home: NextPage = () => {
   useEffect(() => {
     const handleScroll = () => {
       const scrollY = window.scrollY;
-      const newOffsetY = scrollY * 0.9; // Adjust the multiplier to increase or decrease the effect
+      const newOffsetY = scrollY * 0.95; // Adjust the multiplier to increase or decrease the effect
       controls.start({ y: newOffsetY });
     };
 
@@ -234,17 +237,6 @@ const Home: NextPage = () => {
     <motion.div className="space-y-12 pb-[8rem] px-5">
       <Head>
         <title>Haruxe</title>
-        <meta name="description" content="Home of Haruxe's Portfolio" />
-        <link rel="icon" href="/favicon.ico" />
-        <meta property="og:title" content="Haruxe's Portfolio" />
-        <meta
-          property="og:description"
-          content="Learn more about Haruxe's work and projects."
-        />
-        <meta
-          property="og:image"
-          content="https://haruxe.xyz/images/preview.png"
-        />
       </Head>
       <div className="relative flex py-[5rem] h-screen ">
         <motion.div
@@ -327,7 +319,7 @@ const Home: NextPage = () => {
               }}
               transition={{ duration: 1, delay: 1.8 }}
             >
-              <Link href="/about">{randomPhrase}</Link>
+              <Link href="/#contact">{randomPhrase}</Link>
             </motion.button>
           </p>
 
@@ -337,17 +329,15 @@ const Home: NextPage = () => {
           </p> */}
         </motion.div>
 
-        {scrollYProgress.get() <= 0 && (
-          <motion.div
-            animate={{ opacity: 1 }}
-            initial={{ opacity: 0 }}
-            transition={{ duration: 1, delay: 2 }}
-            className="flex place-items-center flex-col absolute bottom-5 left-0 right-0 space-y-3 animate-bounce place-content-center"
-            style={{ opacity }}
-          >
-            <ArrowDownThick className="2xl:w-10 2xl:h-10 w-[8vw] h-[8vw]" />
-          </motion.div>
-        )}
+        <motion.div
+          animate={{ opacity: 1 }}
+          initial={{ opacity: 0 }}
+          transition={{ duration: 1, delay: 2 }}
+          className="flex place-items-center flex-col absolute bottom-5 left-0 right-0 space-y-3 animate-bounce place-content-center"
+          style={{ opacity }}
+        >
+          <ArrowDownThick className="2xl:w-10 2xl:h-10 w-[8vw] h-[8vw]" />
+        </motion.div>
       </div>
       {/* <div className="place-items-center place-content-between flex">
         <motion.div
@@ -435,7 +425,7 @@ const Home: NextPage = () => {
           <div className="flex w-full h-[1px] bg-gray-500 my-3" />
           <div className="flex place-items-center ">
             <Job
-              title="Developer & Security Researcher"
+              title="blockchain Developer & Security Researcher"
               company="BAO Finance"
               date="Nov 2022 - Present"
               link="https://baofinance.io"
@@ -456,7 +446,7 @@ const Home: NextPage = () => {
           <div className="flex w-full h-[1px] bg-gray-500 my-1 md:my-3" />
           <div className="flex place-items-center">
             <Job
-              title="Developer"
+              title="blockchain Developer"
               company="WEB3SG"
               date="May 2023 - PRESENT"
               link="https://web3sg.net/"
@@ -470,7 +460,7 @@ const Home: NextPage = () => {
           <div className="flex w-full h-[1px] bg-gray-500 my-1 md:my-3" />
           <div className="flex place-items-center">
             <Job
-              title="Developer"
+              title="blockchain Developer"
               company="Blueberry Foundation"
               date="April 2023 - Sept 2023"
               link="https://bloom.garden"
@@ -518,7 +508,7 @@ const Home: NextPage = () => {
           <Project
             title="details how the current and previous uniswap versions work"
             company="Uniswap zero to mastery"
-            date="May 2020 - Jan 2022"
+            date="November 2022"
             link="https://mirror.xyz/haruxe.eth/q-2jXIvcXI4cPDgmQLac1L_iQ6zXgbmCtIhgCHnabc8"
             banner="/images/mirror1.png"
           />
@@ -527,7 +517,7 @@ const Home: NextPage = () => {
             <Project
               title="explaination of how merkle trees and proofs work and why they are useful"
               company="merkle trees and proofs"
-              date="January 2022"
+              date="October 2022"
               link="https://mirror.xyz/haruxe.eth/Gg7UG4hctOHyteVeRX7w1Ac9m1gAoCs8uuiWx3WwVz4"
               banner="/images/mirror2.png"
             />
@@ -537,7 +527,7 @@ const Home: NextPage = () => {
             <Project
               title="written during the heat of sec regulations on crypto"
               company="regulation terrorism"
-              date="April 2023 - Sept 2023"
+              date="October 2022"
               link="https://mirror.xyz/haruxe.eth/UUkAX6QLPzippSJstT6f5QOWYSe1SLbaEvZxygPIh50"
               banner="/images/mirror3.png"
               end
@@ -548,7 +538,7 @@ const Home: NextPage = () => {
             <Project
               title="tips and tricks to optimize solidity contracts"
               company="solidity gas optimizations"
-              date="April 2023 - Sept 2023"
+              date="Sept 2022"
               link="https://mirror.xyz/haruxe.eth/DW5verFv8KsYOBC0SxqWORYry17kPdeS94JqOVkgxAA"
               banner="/images/mirror4.png"
               end
@@ -580,7 +570,7 @@ const Home: NextPage = () => {
           <Project
             title="bug bounty and auditing security collective"
             company="koroksec"
-            date="May 2020 - Jan 2022"
+            date="July 2023"
             link="https://koroksec.xyz"
             skills={["Immunefi", "foundry", "brownie", "exploits"]}
             banner="/images/koroksec.png"
@@ -601,7 +591,7 @@ const Home: NextPage = () => {
             <Project
               title="Webapp built for the KaijuKingz community to monitor value."
               company="kaiju extractions"
-              date="April 2023 - Sept 2023"
+              date="June 2022"
               link="https://kaijukingzlog.vercel.app/"
               skills={["react", "Tailwindcss", "GraphQL", "ethers"]}
               banner="/images/KaijuLogs.png"
@@ -613,10 +603,92 @@ const Home: NextPage = () => {
             <Project
               title="Guest on the Immunefi podcast to discuss merkle trees and proofs"
               company="Immunefi podcast"
-              date="April 2023 - Sept 2023"
+              date="November 2022"
               link="https://www.youtube.com/watch?v=20znoiLt2ds"
               banner="/images/immunefi.png"
               end
+            />
+          </div>
+
+          <div className="flex w-full h-[1px] bg-gray-500 my-1 md:my-3" />
+        </div>
+      </div>
+      <div className="w-full place-items-center place-content-center flex ">
+        <DotFill className="w-10 h-10 mx-auto flex my-12" />
+      </div>
+      <div className="space-y-2 w-full z-30 text-right">
+        <div className="flex space-x-5 place-content-start place-items-end">
+          <div className="relative w-[80px] h-[100px]">
+            <Image src="/images/kirbyrun.gif" quality={100} fill alt="banner" />
+          </div>
+          <h1 className="z-30 text-left mr-auto font-bold font-dm-serif-display 2xl:text-[3rem] md:text-[2rem] text-[8vw] uppercase decoration-1 duration-150">
+            CONTACT
+          </h1>
+        </div>
+        <div className="space-y-4 md:space-y-[4rem] z-30 flex flex-col place-content-center">
+          <div className="flex w-full h-[1px] bg-gray-500 my-1 md:my-3" />
+          <div className="flex place-items-center z-30">
+            <h1
+              className="font-bold text-xl leading-relaxed lowercase font-major-mono-display "
+              id="contact"
+            >
+              I&apos;m always open to new opportunities and connections. Feel
+              free to reach out to me at{" "}
+              <Link
+                href="mailto:haruxe@proton.me"
+                className="font-bold text-purple-300 duration-150"
+                target="_blank"
+              >
+                haruxe@proton.me
+              </Link>{" "}
+              or DM me on{" "}
+              <Link
+                href="https://twitter.com/haruxeETH"
+                className="font-bold text-purple-300 duration-150"
+                target="_blank"
+              >
+                Twitter
+              </Link>
+              .
+            </h1>
+          </div>
+          <div className="flex w-full h-[1px] bg-gray-500 my-1 md:my-3" />
+        </div>
+      </div>
+      <div className="w-full place-items-center place-content-center flex ">
+        <DotFill className="w-10 h-10 mx-auto flex my-12" />
+      </div>
+      <div className="space-y-2 w-full z-30 text-right">
+        <div className="flex space-x-5 place-content-start place-items-end">
+          <div className="relative w-[100px] h-[80px]">
+            <Image
+              src="/images/kirbyfire.gif"
+              quality={100}
+              fill
+              alt="banner"
+            />
+          </div>
+          <h1 className="z-30 text-left mr-auto font-bold font-dm-serif-display 2xl:text-[3rem] md:text-[2rem] text-[8vw] uppercase decoration-1 duration-150">
+            CERTIFICATIONS
+          </h1>
+        </div>
+        <div className="space-y-4 md:space-y-[4rem] z-30 flex flex-col place-content-center">
+          <div className="flex w-full h-[1px] bg-gray-500 my-1 md:my-3" />
+          <Project
+            title="certified associate programmer"
+            company="unity"
+            date="December 2021"
+            link="https://www.credly.com/badges/392a6e11-235e-4efd-8d45-594036528fee"
+            banner="/images/unity.png"
+          />
+          <div className="flex w-full h-[1px] bg-gray-500 my-1 md:my-3" />
+          <div className="flex place-items-center ">
+            <Project
+              title="ISTQB Advanced Tester"
+              company="ASTQB"
+              date="April 2022"
+              link="https://atsqa.org/certified-testers/profile/4c580dcca1fc45b0ad87bcb9df7f3a6b"
+              banner="/images/astqb.png"
             />
           </div>
 

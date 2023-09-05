@@ -45,7 +45,10 @@ function Navbar() {
               <Link href="https://github.com/Haruxe" className="duration-150 ">
                 <Github className="w-5 h-5" />
               </Link>
-              <Link href="https://github.com/Haruxe" className="duration-150 ">
+              <Link
+                href="https://twitter.com/haruxeETH"
+                className="duration-150 "
+              >
                 <Twitter className="w-5 h-5" />
               </Link>
             </div>
