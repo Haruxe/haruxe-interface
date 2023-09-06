@@ -18,7 +18,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <meta name="twitter:site" content="@haruxeETH" />
         <meta
           name="twitter:title"
-          content="Haruxe - Web Developer and Security Researcher"
+          content="Haruxe - Web3 Developer and Security Researcher"
         />
         <meta
           name="twitter:description"
