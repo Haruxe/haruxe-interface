@@ -462,8 +462,8 @@ const Home: NextPage = () => {
             <Job
               title="blockchain Developer"
               company="Blueberry Foundation"
-              date="April 2023 - Sept 2023"
-              link="https://bloom.garden"
+              date="April 2023 - January 2024"
+              link="https://blueberry.garden"
               description="Engage in the development of front-end, integration, and smart contracts with a strong focus on complex tokenomics and re-usability, while also conducting self-audits for protocol contracts and facilitating communication with external auditors to ensure robust security measures."
               skills={[
                 "NextJS",
@@ -566,6 +566,25 @@ const Home: NextPage = () => {
           </h1>
         </div>
         <div className="space-y-4 md:space-y-[4rem] z-30 flex flex-col place-content-center">
+          <div className="flex w-full h-[1px] bg-gray-500 my-1 md:my-3" />
+          <div className="flex place-items-center ">
+            <Project
+              title="NFT/Staking project built for Web3SG"
+              company="MindPalace"
+              date="January 2024"
+              link="https://mindpalace.dev"
+              skills={[
+                "NodeJS",
+                "Solidity",
+                "GraphQL",
+                "Wagmi/Viem",
+                "Ponder",
+                "Figma",
+              ]}
+              banner="/images/mindpalace.png"
+            />
+          </div>
+
           <div className="flex w-full h-[1px] bg-gray-500 my-1 md:my-3" />
           <Project
             title="bug bounty and auditing security collective"
