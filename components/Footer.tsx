@@ -18,9 +18,6 @@ function Navbar() {
           </Link>
           .
         </h1>
-        <h1 className="ml-auto text-xs text-end opacity-30">
-          please don&apos;t sue me nintendo i just like Kirby
-        </h1>
       </div>
     </div>
   );

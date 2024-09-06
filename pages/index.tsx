@@ -2,198 +2,18 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
-import { Slide } from "react-slideshow-image";
 import "react-slideshow-image/dist/styles.css";
-import {
-  AnimatePresence,
-  motion,
-  useAnimation,
-  useScroll,
-  useSpring,
-  useTransform,
-} from "framer-motion";
-import { useEffect, useRef, useState } from "react";
+import { motion, useAnimation, useScroll, useTransform } from "framer-motion";
+import { useEffect, useState } from "react";
 import { ArrowDownThick } from "styled-icons/typicons";
 import { DotFill } from "styled-icons/octicons";
-import { Dot, Star } from "styled-icons/bootstrap";
-import { StarAndCrescent } from "styled-icons/fa-solid";
+import Job from "../components/Job";
+import Project from "../components/Project";
 
 const Home: NextPage = () => {
   const { scrollYProgress, scrollY } = useScroll();
   const opacity = useTransform(scrollYProgress, [0, 0.1, 0.5, 1], [1, 1, 0, 0]);
   const opacityKirby = useTransform(scrollYProgress, [0, 0.5], [1, 0.3]);
-
-  interface JobProps {
-    title: string;
-    company?: string;
-    date: string;
-    description: string;
-    link: string;
-    skills?: string[];
-    type?: string;
-    banner?: string;
-    end?: boolean;
-  }
-
-  const Job: React.FC<JobProps> = ({
-    title,
-    company,
-    date,
-    description,
-    link = "/",
-    skills,
-    type,
-    banner = "/",
-    end = false,
-  }) => {
-    const [randomBooleans, setRandomBooleans] = useState<boolean[]>([]);
-
-    useEffect(() => {
-      if (skills) {
-        const randomValues = skills.map(() => Math.random() < 0.5);
-        setRandomBooleans(randomValues);
-      }
-    }, [skills]);
-
-    return (
-      <motion.div
-        className="duration-150 flex flex-wrap place-content-start z-10 w-full"
-        // whileInView={{ opacity: 1, x: 0 }}
-        // initial={{ opacity: 0, x: -50 }}
-        // transition={{ duration: 1.4, type: "spring" }}
-      >
-        <div className="mb-auto">
-          <h1 className="font-bold text-sm text-[1.4vw] 2xl:w-[30rem] md:w-[30vw] lowercase font-major-mono-display ">
-            {date && date}
-          </h1>
-        </div>
-        <div className="mb-auto">
-          <div className="flex flex-col place-items-start mr-auto leading-none mb-auto">
-            <Link
-              className="font-bold space-x-5 flex font-dm-serif-display 2xl:text-[3rem] md:text-[2rem] text-[8vw] uppercase decoration-1 hover:underline duration-150"
-              href={link}
-              target="_blank"
-            >
-              {/* <div className="2xl:h-[6rem] 2xl:w-[10.5rem] md:h-[4rem] md:w-[7rem] h-[11vw] relative">
-              <Image src={banner} fill alt="banner" className="rounded-sm" />
-            </div> */}
-              <h1>{company}</h1>
-            </Link>
-            <h1 className="font-bold 2xl:text-md md:text-base text-[3vw] uppercase">
-              {title}
-              {type && " · " + type}
-            </h1>
-          </div>
-          <div>
-            {/* <p className="text-zinc-300 font-mono 2xl:text-lg md:text-base text-[2.5vw] md:text-[2vw]">
-              {description}
-            </p> */}
-            <div className="flex flex-wrap gap-2 mt-3 font-mono">
-              {skills &&
-                skills.map((skill, index) => {
-                  return (
-                    <div
-                      key={skill}
-                      className={
-                        randomBooleans[index]
-                          ? "md:py-2 md:px-4 px-[3vw] py-[2vw] md:text-base text-[2.4vw] font-bold outline outline-1 uppercase"
-                          : "md:py-2 md:px-4 px-[3vw] py-[2vw] md:text-base text-[2.4vw] font-bold outline outline-1 uppercase bg-[#fdffe4] text-black"
-                      }
-                    >
-                      {skill}
-                    </div>
-                  );
-                })}
-            </div>
-          </div>
-        </div>
-      </motion.div>
-    );
-  };
-
-  interface ProjectProps {
-    title: string;
-    company?: string;
-    date: string;
-    link: string;
-    skills?: string[];
-    banner?: string;
-    end?: boolean;
-  }
-
-  const Project: React.FC<ProjectProps> = ({
-    title,
-    company,
-    date,
-    link = "/",
-    skills,
-    banner = "/",
-    end = false,
-  }) => {
-    const [randomBooleans, setRandomBooleans] = useState<boolean[]>([]);
-
-    useEffect(() => {
-      if (skills) {
-        const randomValues = skills.map(() => Math.random() < 0.5);
-        setRandomBooleans(randomValues);
-      }
-    }, [skills]);
-
-    return (
-      <motion.div
-        className="duration-150 flex flex-wrap gap-5 place-content-start z-10 w-full"
-        // whileInView={{ opacity: 1, x: 0 }}
-        // initial={{ opacity: 0, x: -50 }}
-        // transition={{ duration: 1.4, type: "spring" }}
-      >
-        <div className="h-[6rem] w-[10.5rem] flex-none relative place-items-center my-auto mr-5">
-          <Image src={banner} fill alt="banner" className="rounded-sm" />
-        </div>
-        <div className="flex-col md:flex-row flex place-content-between">
-          <div className="mb-auto ">
-            <div className="flex flex-col text-left place-items-start place-content-center mr-auto leading-none mb-auto">
-              <p className=" font-major-mono-display lowercase">
-                {date && date}
-              </p>
-              <Link
-                className="font-bold space-x-5 flex font-dm-serif-display 2xl:text-[3rem] md:text-[2rem] text-[8vw] uppercase decoration-1 hover:underline duration-150"
-                href={link}
-                target="_blank"
-              >
-                <h1>{company}</h1>
-              </Link>
-              <h1 className="font-bold 2xl:text-md md:text-base text-[3vw] uppercase">
-                {title}
-              </h1>
-            </div>
-            <div>
-              {/* <p className="text-zinc-300 font-mono 2xl:text-lg md:text-base text-[2.5vw] md:text-[2vw]">
-              {description}
-            </p> */}
-              <div className="flex flex-wrap gap-2 mt-3 font-mono">
-                {skills &&
-                  skills.map((skill, index) => {
-                    return (
-                      <div
-                        key={skill}
-                        className={
-                          randomBooleans[index]
-                            ? "md:py-2 md:px-4 px-[3vw] py-[2vw] md:text-base text-[2.4vw] font-bold outline outline-1 uppercase"
-                            : "md:py-2 md:px-4 px-[3vw] py-[2vw] md:text-base text-[2.4vw] font-bold outline outline-1 uppercase bg-[#fdffe4] text-black"
-                        }
-                      >
-                        {skill}
-                      </div>
-                    );
-                  })}
-              </div>
-            </div>
-          </div>
-        </div>
-      </motion.div>
-    );
-  };
-
   const text = "RESEARCHER";
   const [displayedLetters, setDisplayedLetters] = useState<string[]>([]);
   const [isMounted, setIsMounted] = useState(false);
@@ -235,9 +55,6 @@ const Home: NextPage = () => {
 
   return (
     <motion.div className="space-y-12 pb-[8rem] px-5">
-      <Head>
-        <title>Haruxe</title>
-      </Head>
       <div className="relative flex py-[5rem] h-screen ">
         <motion.div
           className="absolute right-[20%] bottom-[55%]"
@@ -255,7 +72,7 @@ const Home: NextPage = () => {
             <Image src="/images/kirbychute.gif" fill alt="kirby" />
           </motion.div>
         </motion.div>
-        <motion.div
+        <motion.header
           className="flex flex-col  my-auto w-full"
           animate={{ scale: 1, opacity: 1 }}
           initial={{ scale: 0, opacity: 0 }}
@@ -291,7 +108,7 @@ const Home: NextPage = () => {
             <motion.span
               animate={{ opacity: 1, x: 0 }}
               initial={{ opacity: 0, x: -50 }}
-              transition={{ duration: 0.6, delay: 0.6 }}
+              transition={{ duration: 0.8, delay: 0.9 }}
             >
               DEVELOPER.
             </motion.span>
@@ -327,7 +144,7 @@ const Home: NextPage = () => {
             I build things on Ethereum, with an emphasis on security and
             reliability.
           </p> */}
-        </motion.div>
+        </motion.header>
 
         <motion.div
           animate={{ opacity: 1 }}
@@ -339,75 +156,7 @@ const Home: NextPage = () => {
           <ArrowDownThick className="2xl:w-10 2xl:h-10 w-[8vw] h-[8vw]" />
         </motion.div>
       </div>
-      {/* <div className="place-items-center place-content-between flex">
-        <motion.div
-          animate={{ opacity: 1, x: 0 }}
-          initial={{ opacity: 0, x: 100 }}
-          transition={{ duration: 1.2, delay: 1 }}
-        >
-          <p className="text-2xl font-dm-serif-display space-y-1">
-            Back in 2019, I started my journey in programming. I began tinkering
-            with game development, making{" "}
-            <Link
-              href="https://harux.itch.io/"
-              className="font-bold text-[#a5bdca] duration-150"
-              target="_blank"
-            >
-              independent games
-            </Link>{" "}
-            with Unity and C#. Eventually I was enthralled by the world of
-            blockchain technology and the potential it has to change the world.
-            <br /> <br />
-            Since then, I&apos;ve had the opportunity to work with DeFi
-            protocols like{" "}
-            <Link
-              href="https://baofinance.io"
-              className="font-bold text-[#a5bdca]  duration-150 "
-              target="_blank"
-            >
-              BAO Finance
-            </Link>{" "}
-            and{" "}
-            <Link
-              href="https://bloom.garden"
-              className="font-bold text-[#a5bdca] duration-150 "
-              target="_blank"
-            >
-              Blueberry Foundation
-            </Link>
-            - designing, developing, and securing smart contracts and front-end
-            infrastructure. In my free time I&apos;ve also written{" "}
-            <Link
-              href="https://mirror.xyz/haruxe.eth"
-              className="font-bold text-[#a5bdca] duration-150 "
-              target="_blank"
-            >
-              articles
-            </Link>
-            , been a guest on a{" "}
-            <Link
-              href="https://www.youtube.com/watch?v=20znoiLt2ds"
-              className="font-bold text-[#a5bdca] duration-150 "
-              target="_blank"
-            >
-              podcast
-            </Link>
-            , and built tools for NFT communities like{" "}
-            <Link
-              href="https://kaijukingzlog.vercel.app/"
-              className="font-bold text-[#a5bdca] duration-150 "
-              target="_blank"
-            >
-              Kaiju Kingz
-            </Link>
-            .
-            <br /> <br />
-            When I&apos;m not building, I&apos;m usually playing video games, at
-            the gym, or hanging out with my dog.
-          </p>
-        </motion.div>
-      </div> */}
-      <div className="space-y-2 w-full z-30 ">
+      <section className="space-y-2 w-full z-30 ">
         <div className="flex space-x-5 place-content-start place-items-end">
           <div className="relative w-[100px] h-[80px]">
             <Image
@@ -490,11 +239,11 @@ const Home: NextPage = () => {
           />
           <div className="flex w-full h-[1px] bg-gray-500 my-1 md:my-3" />
         </div>
-      </div>
-      <div className="w-full place-items-center place-content-center flex ">
-        <DotFill className="w-10 h-10 mx-auto flex my-12" />
-      </div>
-      <div className="space-y-2 w-full z-30 text-right">
+        <div className="w-full place-items-center place-content-center flex ">
+          <DotFill className="w-10 h-10 mx-auto flex my-12" />
+        </div>
+      </section>
+      <section className="space-y-2 w-full z-30 text-right">
         <div className="flex space-x-5 place-content-start place-items-end">
           <div className="relative w-[100px] h-[80px]">
             <Image src="/images/meta.gif" quality={100} fill alt="banner" />
@@ -530,7 +279,6 @@ const Home: NextPage = () => {
               date="October 2022"
               link="https://mirror.xyz/haruxe.eth/UUkAX6QLPzippSJstT6f5QOWYSe1SLbaEvZxygPIh50"
               banner="/images/mirror3.png"
-              end
             />
           </div>
           <div className="flex w-full h-[1px] bg-gray-500 my-1 md:my-3" />
@@ -541,17 +289,16 @@ const Home: NextPage = () => {
               date="Sept 2022"
               link="https://mirror.xyz/haruxe.eth/DW5verFv8KsYOBC0SxqWORYry17kPdeS94JqOVkgxAA"
               banner="/images/mirror4.png"
-              end
             />
           </div>
 
           <div className="flex w-full h-[1px] bg-gray-500 my-1 md:my-3" />
         </div>
-      </div>
-      <div className="w-full place-items-center place-content-center flex ">
-        <DotFill className="w-10 h-10 mx-auto flex my-12" />
-      </div>
-      <div className="space-y-2 w-full z-30 text-right">
+        <div className="w-full place-items-center place-content-center flex ">
+          <DotFill className="w-10 h-10 mx-auto flex my-12" />
+        </div>
+      </section>
+      <section className="space-y-2 w-full z-30 text-right">
         <div className="flex space-x-5 place-content-start place-items-end">
           <div className="relative w-[100px] h-[80px]">
             <Image
@@ -614,7 +361,6 @@ const Home: NextPage = () => {
               link="https://kaijukingzlog.vercel.app/"
               skills={["react", "Tailwindcss", "GraphQL", "ethers"]}
               banner="/images/KaijuLogs.png"
-              end
             />
           </div>
           <div className="flex w-full h-[1px] bg-gray-500 my-1 md:my-3" />
@@ -625,17 +371,16 @@ const Home: NextPage = () => {
               date="November 2022"
               link="https://www.youtube.com/watch?v=20znoiLt2ds"
               banner="/images/immunefi.png"
-              end
             />
           </div>
 
           <div className="flex w-full h-[1px] bg-gray-500 my-1 md:my-3" />
         </div>
-      </div>
-      <div className="w-full place-items-center place-content-center flex ">
-        <DotFill className="w-10 h-10 mx-auto flex my-12" />
-      </div>
-      <div className="space-y-2 w-full z-30 text-right">
+        <div className="w-full place-items-center place-content-center flex ">
+          <DotFill className="w-10 h-10 mx-auto flex my-12" />
+        </div>
+      </section>
+      <section className="space-y-2 w-full z-30 text-right">
         <div className="flex space-x-5 place-content-start place-items-end">
           <div className="relative w-[80px] h-[100px]">
             <Image src="/images/kirbyrun.gif" quality={100} fill alt="banner" />
@@ -647,7 +392,7 @@ const Home: NextPage = () => {
         <div className="space-y-4 md:space-y-[4rem] z-30 flex flex-col place-content-center">
           <div className="flex w-full h-[1px] bg-gray-500 my-1 md:my-3" />
           <div className="flex place-items-center z-30">
-            <h1
+            <p
               className="font-bold text-xl leading-relaxed lowercase font-major-mono-display "
               id="contact"
             >
@@ -669,15 +414,15 @@ const Home: NextPage = () => {
                 Twitter
               </Link>
               .
-            </h1>
+            </p>
           </div>
           <div className="flex w-full h-[1px] bg-gray-500 my-1 md:my-3" />
         </div>
-      </div>
-      <div className="w-full place-items-center place-content-center flex ">
-        <DotFill className="w-10 h-10 mx-auto flex my-12" />
-      </div>
-      <div className="space-y-2 w-full z-30 text-right">
+        <div className="w-full place-items-center place-content-center flex ">
+          <DotFill className="w-10 h-10 mx-auto flex my-12" />
+        </div>
+      </section>
+      <section className="space-y-2 w-full z-30 text-right">
         <div className="flex space-x-5 place-content-start place-items-end">
           <div className="relative w-[100px] h-[80px]">
             <Image
@@ -713,7 +458,7 @@ const Home: NextPage = () => {
 
           <div className="flex w-full h-[1px] bg-gray-500 my-1 md:my-3" />
         </div>
-      </div>
+      </section>
     </motion.div>
   );
 };

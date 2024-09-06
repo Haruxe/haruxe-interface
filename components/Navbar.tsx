@@ -14,7 +14,7 @@ function Navbar() {
   }, [scrollYProgress]);
 
   return (
-    <motion.div
+    <motion.nav
       className="fixed flex flex-col w-screen z-40 mx-auto place-content-center"
       animate={{ y: 0 }}
       initial={{ y: -100 }}
@@ -59,7 +59,7 @@ function Navbar() {
         className={"bg-white h-[1px] rounded-xl left-0 "}
         style={{ scaleX: scrollYProgress }}
       />
-    </motion.div>
+    </motion.nav>
   );
 }
 
