@@ -54,7 +54,7 @@ const Home: NextPage = () => {
   }, [controls]);
 
   return (
-    <motion.div className="space-y-12 pb-[8rem] px-5">
+    <motion.div className="space-y-24 pb-24 px-5 md:px-8">
       <div className="relative flex py-[5rem] h-screen ">
         <motion.div
           className="absolute right-[20%] bottom-[55%]"
@@ -156,8 +156,8 @@ const Home: NextPage = () => {
           <ArrowDownThick className="2xl:w-10 2xl:h-10 w-[8vw] h-[8vw]" />
         </motion.div>
       </div>
-      <section className="space-y-2 w-full z-30 ">
-        <div className="flex space-x-5 place-content-start place-items-end">
+      <section className="space-y-12 w-full pt-12">
+        <div className="flex space-x-5 items-end">
           <div className="relative w-[100px] h-[80px]">
             <Image
               src="/images/kirbycook.gif"
@@ -166,13 +166,13 @@ const Home: NextPage = () => {
               alt="banner"
             />
           </div>
-          <h1 className="z-30 text-left mr-auto font-bold font-dm-serif-display 2xl:text-[3rem] md:text-[2rem] text-[8vw] uppercase decoration-1 duration-150">
+          <h1 className="text-left font-bold font-dm-serif-display 2xl:text-[3rem] md:text-[2rem] text-[8vw] uppercase">
             EXPERIENCE
           </h1>
         </div>
-        <div className="space-y-4 md:space-y-[4rem] z-30 flex flex-col place-content-center">
-          <div className="flex w-full h-[1px] bg-gray-500 my-3" />
-          <div className="flex place-items-center ">
+
+        <div className="space-y-8 sm:space-y-16 divide-y divide-gray-500">
+          <div className="pt-8 sm:pt-16">
             <Job
               title="blockchain Developer & Security Researcher"
               company="BAO Finance"
@@ -192,8 +192,8 @@ const Home: NextPage = () => {
               banner="/images/BaoBanner.png"
             />
           </div>
-          <div className="flex w-full h-[1px] bg-gray-500 my-1 md:my-3" />
-          <div className="flex place-items-center">
+
+          <div className="pt-8 sm:pt-16">
             <Job
               title="blockchain Developer"
               company="WEB3SG"
@@ -206,8 +206,8 @@ const Home: NextPage = () => {
               end
             />
           </div>
-          <div className="flex w-full h-[1px] bg-gray-500 my-1 md:my-3" />
-          <div className="flex place-items-center">
+
+          <div className="pt-8 sm:pt-16">
             <Job
               title="blockchain Developer"
               company="Blueberry Foundation"
@@ -227,42 +227,42 @@ const Home: NextPage = () => {
               end
             />
           </div>
-          <div className="flex w-full h-[1px] bg-gray-500 my-1 md:my-3" />
-          <Job
-            title="game development"
-            company="Indie Game Developer"
-            date="May 2020 - Jan 2022"
-            link="https://harux.itch.io/"
-            description="Actively competed in multiple game jams, honing my skills in rapid development and problem-solving under tight deadlines, while also designing, coding, and deploying games using Unity3D with C#."
-            skills={["Unity", "C#", "Blender", "Photon"]}
-            banner="/images/HaruxBanner.png"
-          />
-          <div className="flex w-full h-[1px] bg-gray-500 my-1 md:my-3" />
-        </div>
-        <div className="w-full place-items-center place-content-center flex ">
-          <DotFill className="w-10 h-10 mx-auto flex my-12" />
+
+          <div className="pt-8 sm:pt-16">
+            <Job
+              title="game development"
+              company="Indie Game Developer"
+              date="May 2020 - Jan 2022"
+              link="https://harux.itch.io/"
+              description="Actively competed in multiple game jams, honing my skills in rapid development and problem-solving under tight deadlines, while also designing, coding, and deploying games using Unity3D with C#."
+              skills={["Unity", "C#", "Blender", "Photon"]}
+              banner="/images/HaruxBanner.png"
+            />
+          </div>
         </div>
       </section>
-      <section className="space-y-2 w-full z-30 text-right">
-        <div className="flex space-x-5 place-content-start place-items-end">
+      <section className="space-y-12 w-full pt-12">
+        <div className="flex space-x-5 items-end">
           <div className="relative w-[100px] h-[80px]">
             <Image src="/images/meta.gif" quality={100} fill alt="banner" />
           </div>
-          <h1 className="z-30 text-left mr-auto font-bold font-dm-serif-display 2xl:text-[3rem] md:text-[2rem] text-[8vw] uppercase decoration-1 duration-150">
+          <h1 className="text-left font-bold font-dm-serif-display 2xl:text-[3rem] md:text-[2rem] text-[8vw] uppercase">
             MY ARTICLES
           </h1>
         </div>
-        <div className="space-y-4 md:space-y-[4rem] z-30 flex flex-col place-content-center">
-          <div className="flex w-full h-[1px] bg-gray-500 my-1 md:my-3" />
-          <Project
-            title="details how the current and previous uniswap versions work"
-            company="Uniswap zero to mastery"
-            date="November 2022"
-            link="https://mirror.xyz/haruxe.eth/q-2jXIvcXI4cPDgmQLac1L_iQ6zXgbmCtIhgCHnabc8"
-            banner="/images/mirror1.png"
-          />
-          <div className="flex w-full h-[1px] bg-gray-500 my-1 md:my-3" />
-          <div className="flex place-items-center ">
+
+        <div className="space-y-16 divide-y divide-gray-500">
+          <div className="pt-16">
+            <Project
+              title="details how the current and previous uniswap versions work"
+              company="Uniswap zero to mastery"
+              date="November 2022"
+              link="https://mirror.xyz/haruxe.eth/q-2jXIvcXI4cPDgmQLac1L_iQ6zXgbmCtIhgCHnabc8"
+              banner="/images/mirror1.png"
+            />
+          </div>
+
+          <div className="pt-16">
             <Project
               title="explaination of how merkle trees and proofs work and why they are useful"
               company="merkle trees and proofs"
@@ -271,8 +271,8 @@ const Home: NextPage = () => {
               banner="/images/mirror2.png"
             />
           </div>
-          <div className="flex w-full h-[1px] bg-gray-500 my-1 md:my-3" />
-          <div className="flex place-items-center">
+
+          <div className="pt-16">
             <Project
               title="written during the heat of sec regulations on crypto"
               company="regulation terrorism"
@@ -281,8 +281,8 @@ const Home: NextPage = () => {
               banner="/images/mirror3.png"
             />
           </div>
-          <div className="flex w-full h-[1px] bg-gray-500 my-1 md:my-3" />
-          <div className="flex place-items-center">
+
+          <div className="pt-16">
             <Project
               title="tips and tricks to optimize solidity contracts"
               company="solidity gas optimizations"
@@ -291,15 +291,10 @@ const Home: NextPage = () => {
               banner="/images/mirror4.png"
             />
           </div>
-
-          <div className="flex w-full h-[1px] bg-gray-500 my-1 md:my-3" />
-        </div>
-        <div className="w-full place-items-center place-content-center flex ">
-          <DotFill className="w-10 h-10 mx-auto flex my-12" />
         </div>
       </section>
-      <section className="space-y-2 w-full z-30 text-right">
-        <div className="flex space-x-5 place-content-start place-items-end">
+      <section className="space-y-12 w-full pt-12">
+        <div className="flex space-x-5 items-end">
           <div className="relative w-[100px] h-[80px]">
             <Image
               src="/images/kirbyjump.gif"
@@ -308,13 +303,13 @@ const Home: NextPage = () => {
               alt="banner"
             />
           </div>
-          <h1 className="z-30 text-left mr-auto font-bold font-dm-serif-display 2xl:text-[3rem] md:text-[2rem] text-[8vw] uppercase decoration-1 duration-150">
+          <h1 className="text-left font-bold font-dm-serif-display 2xl:text-[3rem] md:text-[2rem] text-[8vw] uppercase">
             PROJECTS
           </h1>
         </div>
-        <div className="space-y-4 md:space-y-[4rem] z-30 flex flex-col place-content-center">
-          <div className="flex w-full h-[1px] bg-gray-500 my-1 md:my-3" />
-          <div className="flex place-items-center ">
+
+        <div className="space-y-16 divide-y divide-gray-500">
+          <div className="pt-16">
             <Project
               title="NFT/Staking project built for Web3SG"
               company="MindPalace"
@@ -332,17 +327,18 @@ const Home: NextPage = () => {
             />
           </div>
 
-          <div className="flex w-full h-[1px] bg-gray-500 my-1 md:my-3" />
-          <Project
-            title="bug bounty and auditing security collective"
-            company="koroksec"
-            date="July 2023"
-            link="https://koroksec.xyz"
-            skills={["Immunefi", "foundry", "brownie", "exploits"]}
-            banner="/images/koroksec.png"
-          />
-          <div className="flex w-full h-[1px] bg-gray-500 my-1 md:my-3" />
-          <div className="flex place-items-center ">
+          <div className="pt-16">
+            <Project
+              title="bug bounty and auditing security collective"
+              company="koroksec"
+              date="July 2023"
+              link="https://koroksec.xyz"
+              skills={["Immunefi", "foundry", "brownie", "exploits"]}
+              banner="/images/koroksec.png"
+            />
+          </div>
+
+          <div className="pt-16">
             <Project
               title="Unity game I built in a week for a game-jam competition."
               company="hardbreach"
@@ -352,8 +348,8 @@ const Home: NextPage = () => {
               banner="/images/hardbreach.png"
             />
           </div>
-          <div className="flex w-full h-[1px] bg-gray-500 my-1 md:my-3" />
-          <div className="flex place-items-center">
+
+          <div className="pt-16">
             <Project
               title="Webapp built for the KaijuKingz community to monitor value."
               company="kaiju extractions"
@@ -363,8 +359,8 @@ const Home: NextPage = () => {
               banner="/images/KaijuLogs.png"
             />
           </div>
-          <div className="flex w-full h-[1px] bg-gray-500 my-1 md:my-3" />
-          <div className="flex place-items-center">
+
+          <div className="pt-16">
             <Project
               title="Guest on the Immunefi podcast to discuss merkle trees and proofs"
               company="Immunefi podcast"
@@ -373,57 +369,43 @@ const Home: NextPage = () => {
               banner="/images/immunefi.png"
             />
           </div>
-
-          <div className="flex w-full h-[1px] bg-gray-500 my-1 md:my-3" />
-        </div>
-        <div className="w-full place-items-center place-content-center flex ">
-          <DotFill className="w-10 h-10 mx-auto flex my-12" />
         </div>
       </section>
-      <section className="space-y-2 w-full z-30 text-right">
-        <div className="flex space-x-5 place-content-start place-items-end">
+      <section className="space-y-8 w-full pt-12" id="contact">
+        <div className="flex space-x-5 items-end">
           <div className="relative w-[80px] h-[100px]">
             <Image src="/images/kirbyrun.gif" quality={100} fill alt="banner" />
           </div>
-          <h1 className="z-30 text-left mr-auto font-bold font-dm-serif-display 2xl:text-[3rem] md:text-[2rem] text-[8vw] uppercase decoration-1 duration-150">
+          <h1 className="text-left font-bold font-dm-serif-display 2xl:text-[3rem] md:text-[2rem] text-[8vw] uppercase">
             CONTACT
           </h1>
         </div>
-        <div className="space-y-4 md:space-y-[4rem] z-30 flex flex-col place-content-center">
-          <div className="flex w-full h-[1px] bg-gray-500 my-1 md:my-3" />
-          <div className="flex place-items-center z-30">
-            <p
-              className="font-bold text-xl leading-relaxed lowercase font-major-mono-display "
-              id="contact"
+
+        <div className="py-12">
+          <p className="font-bold text-xl leading-relaxed lowercase font-major-mono-display">
+            I&apos;m always open to new opportunities and connections. Feel free
+            to reach out to me at{" "}
+            <Link
+              href="mailto:haruxe@proton.me"
+              className="font-bold text-purple-300 hover:text-purple-400 duration-150"
+              target="_blank"
             >
-              I&apos;m always open to new opportunities and connections. Feel
-              free to reach out to me at{" "}
-              <Link
-                href="mailto:haruxe@proton.me"
-                className="font-bold text-purple-300 duration-150"
-                target="_blank"
-              >
-                haruxe@proton.me
-              </Link>{" "}
-              or DM me on{" "}
-              <Link
-                href="https://twitter.com/haruxeETH"
-                className="font-bold text-purple-300 duration-150"
-                target="_blank"
-              >
-                Twitter
-              </Link>
-              .
-            </p>
-          </div>
-          <div className="flex w-full h-[1px] bg-gray-500 my-1 md:my-3" />
-        </div>
-        <div className="w-full place-items-center place-content-center flex ">
-          <DotFill className="w-10 h-10 mx-auto flex my-12" />
+              haruxe@proton.me
+            </Link>{" "}
+            or DM me on{" "}
+            <Link
+              href="https://twitter.com/haruxeETH"
+              className="font-bold text-purple-300 hover:text-purple-400 duration-150"
+              target="_blank"
+            >
+              Twitter
+            </Link>
+            .
+          </p>
         </div>
       </section>
-      <section className="space-y-2 w-full z-30 text-right">
-        <div className="flex space-x-5 place-content-start place-items-end">
+      <section className="space-y-8 w-full pt-12">
+        <div className="flex space-x-5 items-end">
           <div className="relative w-[100px] h-[80px]">
             <Image
               src="/images/kirbyfire.gif"
@@ -432,21 +414,23 @@ const Home: NextPage = () => {
               alt="banner"
             />
           </div>
-          <h1 className="z-30 text-left mr-auto font-bold font-dm-serif-display 2xl:text-[3rem] md:text-[2rem] text-[8vw] uppercase decoration-1 duration-150">
+          <h1 className="text-left font-bold font-dm-serif-display 2xl:text-[3rem] md:text-[2rem] text-[8vw] uppercase">
             CERTIFICATIONS
           </h1>
         </div>
-        <div className="space-y-4 md:space-y-[4rem] z-30 flex flex-col place-content-center">
-          <div className="flex w-full h-[1px] bg-gray-500 my-1 md:my-3" />
-          <Project
-            title="certified associate programmer"
-            company="unity"
-            date="December 2021"
-            link="https://www.credly.com/badges/392a6e11-235e-4efd-8d45-594036528fee"
-            banner="/images/unity.png"
-          />
-          <div className="flex w-full h-[1px] bg-gray-500 my-1 md:my-3" />
-          <div className="flex place-items-center ">
+
+        <div className="space-y-16 divide-y divide-gray-500">
+          <div className="pt-16">
+            <Project
+              title="certified associate programmer"
+              company="unity"
+              date="December 2021"
+              link="https://www.credly.com/badges/392a6e11-235e-4efd-8d45-594036528fee"
+              banner="/images/unity.png"
+            />
+          </div>
+
+          <div className="pt-16">
             <Project
               title="ISTQB Advanced Tester"
               company="ASTQB"
@@ -455,8 +439,6 @@ const Home: NextPage = () => {
               banner="/images/astqb.png"
             />
           </div>
-
-          <div className="flex w-full h-[1px] bg-gray-500 my-1 md:my-3" />
         </div>
       </section>
     </motion.div>

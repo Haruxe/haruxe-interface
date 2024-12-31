@@ -1,7 +1,7 @@
-import React, { useEffect, useLayoutEffect, useMemo, useState } from "react";
+import React from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 interface ProjectProps {
   title: string;
@@ -20,57 +20,50 @@ const Project: React.FC<ProjectProps> = ({
   skills,
   banner = "/",
 }) => {
-  const [randomBooleans, setRandomBooleans] = useState<boolean[]>([]);
-
-  useMemo(() => {
-    if (skills) {
-      const randomValues = skills.map(() => Math.random() < 0.5);
-      setRandomBooleans(randomValues);
-    }
-  }, [skills]);
-
   return (
-    <motion.section className="duration-150 flex flex-wrap gap-5 place-content-start z-10 w-full">
-      <div className="h-[6rem] w-[10.5rem] flex-none relative place-items-center my-auto mr-5">
-        <Image src={banner} fill alt="banner" className="rounded-sm" />
+    <motion.div className="flex flex-col md:flex-row gap-4 md:gap-8 w-full">
+      <div className="md:w-1/4 lg:w-1/5">
+        <h1 className="font-bold text-sm font-major-mono-display">{date}</h1>
       </div>
-      <div className="flex-col md:flex-row flex place-content-between">
-        <div className="mb-auto ">
-          <div className="flex flex-col text-left place-items-start place-content-center mr-auto leading-none mb-auto">
-            <p className=" font-major-mono-display lowercase">{date && date}</p>
-            <Link
-              className="font-bold space-x-5 flex font-dm-serif-display 2xl:text-[3rem] md:text-[2rem] text-[8vw] uppercase decoration-1 hover:underline duration-150"
-              href={link}
-              target="_blank"
-            >
-              <h1>{company}</h1>
-            </Link>
-            <h1 className="font-bold 2xl:text-md md:text-base text-[3vw] uppercase">
-              {title}
-            </h1>
-          </div>
-          <div>
-            <div className="flex flex-wrap gap-2 mt-3 font-mono">
-              {skills &&
-                skills.map((skill, index) => {
-                  return (
-                    <div
-                      key={skill}
-                      className={
-                        randomBooleans[index]
-                          ? "md:py-2 md:px-4 px-[3vw] py-[2vw] md:text-base text-[2.4vw] font-bold outline outline-1 uppercase"
-                          : "md:py-2 md:px-4 px-[3vw] py-[2vw] md:text-base text-[2.4vw] font-bold outline outline-1 uppercase bg-[#fdffe4] text-black"
-                      }
-                    >
-                      {skill}
-                    </div>
-                  );
-                })}
+      <div className="flex-1 max-w-3xl">
+        <div className="flex flex-col place-items-start leading-none mb-4">
+          <Link
+            className="flex items-center gap-6 group w-full"
+            href={link}
+            target="_blank"
+          >
+            <div className="relative h-20 md:h-28 aspect-[4/3] shrink-0">
+              <Image
+                src={banner}
+                fill
+                alt={company || "project banner"}
+                className="object-cover rounded-md transition-transform duration-300 group-hover:scale-105"
+              />
             </div>
-          </div>
+            <div className="flex flex-col gap-2">
+              <h1 className="font-bold font-dm-serif-display text-2xl md:text-3xl lg:text-4xl uppercase group-hover:underline duration-150">
+                {company}
+              </h1>
+              <h2 className="font-bold text-base md:text-lg text-zinc-300 font-mono">
+                {title}
+              </h2>
+            </div>
+          </Link>
         </div>
+        {skills && (
+          <div className="flex flex-wrap gap-2 mt-3 font-mono">
+            {skills.map((skill) => (
+              <div
+                key={skill}
+                className="py-1 px-3 text-sm md:text-base font-bold outline outline-1 uppercase"
+              >
+                {skill}
+              </div>
+            ))}
+          </div>
+        )}
       </div>
-    </motion.section>
+    </motion.div>
   );
 };
 
