@@ -1,6 +1,8 @@
-import React, { useMemo } from "react";
+import React from "react";
+import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import Card from "./Card";
+import Badge from "./Badge";
 
 interface JobProps {
   title: string;
@@ -11,7 +13,6 @@ interface JobProps {
   skills?: string[];
   type?: string;
   banner?: string;
-  end?: boolean;
 }
 
 const Job: React.FC<JobProps> = ({
@@ -19,47 +20,56 @@ const Job: React.FC<JobProps> = ({
   company,
   date,
   description,
-  link = "/",
+  link,
   skills,
   type,
-  banner = "/",
-  end = false,
+  banner = "/images/default-banner.jpg",
 }) => {
-  const randomBooleans = useMemo(() => {
-    return skills ? skills.map(() => Math.random() < 0.5) : [];
-  }, [skills]);
-
   return (
-    <motion.div className="flex flex-col md:flex-row gap-4 md:gap-8 w-full">
-      <div className="md:w-1/4 lg:w-1/5">
-        <h1 className="font-bold text-sm font-major-mono-display">{date}</h1>
-      </div>
-      <div className="flex-1 max-w-3xl">
-        <div className="flex flex-col place-items-start leading-none mb-4">
-          <Link className="group" href={link} target="_blank">
-            <h1 className="font-bold font-dm-serif-display text-2xl md:text-3xl lg:text-4xl uppercase group-hover:underline duration-150">
-              {company}
-            </h1>
-            <h2 className="font-bold text-base md:text-lg uppercase mt-2">
-              {title}
-              {type && " · " + type}
-            </h2>
-          </Link>
-        </div>
-        <div className="flex flex-wrap gap-2 mt-3 font-mono">
-          {skills?.map((skill, index) => (
-            <div
-              key={skill}
-              className={`py-1 px-3 text-sm md:text-base font-bold outline outline-1 uppercase ${
-                randomBooleans[index] ? "" : "bg-[#fdffe4] text-black"
-              }`}
-            >
-              {skill}
-            </div>
-          ))}
+    <Card>
+      <div className="relative h-52 w-full">
+        <Image
+          src={banner}
+          fill
+          alt={company || "job banner"}
+          className="object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+
+        <div className="absolute bottom-4 left-4 flex flex-wrap gap-2">
+          <Badge text={date} />
+          {type && <Badge text={type} variant="dark" />}
         </div>
       </div>
-    </motion.div>
+
+      <div className="p-6">
+        <Link href={link} target="_blank" className="group block">
+          <h3 className="font-bold text-2xl md:text-3xl uppercase bg-gradient-to-r from-white to-white/90 text-black px-4 py-2 rounded-2xl inline-block mb-3 group-hover:shadow-md transition-all">
+            {company}
+          </h3>
+
+          <div className="font-bold text-lg uppercase mt-3 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full inline-block">
+            {title}
+          </div>
+        </Link>
+
+        <p className="text-white/90 mt-5 mb-5 bg-black/20 p-5 rounded-xl leading-relaxed">
+          {description}
+        </p>
+
+        {skills && skills.length > 0 && (
+          <div className="flex flex-wrap gap-2 mt-4">
+            {skills.map((skill, index) => (
+              <Badge
+                key={skill}
+                text={skill}
+                variant={index % 2 === 0 ? "light" : "dark"}
+              />
+            ))}
+          </div>
+        )}
+      </div>
+    </Card>
   );
 };
 

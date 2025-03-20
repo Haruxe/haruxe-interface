@@ -1,9 +1,11 @@
 import { type AppProps } from "next/app";
 import Head from "next/head";
-import { motion, useScroll, useTransform } from "framer-motion";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
+import Navbar from "../components/layout/Navbar";
+import Footer from "../components/layout/Footer";
+import SmoothScroll from "../components/layout/SmoothScroll";
+import CustomCursor from "../components/ui/CustomCursor";
 import "../styles/globals.css";
+import { useEffect, useState } from "react";
 
 const METADATA = {
   title: "Haruxe",
@@ -13,8 +15,31 @@ const METADATA = {
 };
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const { scrollYProgress } = useScroll();
-  const backgroundOpacity = useTransform(scrollYProgress, [0, 0.3], [1, 0.2]);
+  const [isMounted, setIsMounted] = useState(false);
+  const [theme, setTheme] = useState<"dark" | "light">("dark");
+
+  // Only enable smooth scrolling after component mounts
+  useEffect(() => {
+    setIsMounted(true);
+
+    // Check for saved theme preference
+    const savedTheme = localStorage.getItem("darkMode");
+    if (savedTheme !== null) {
+      const isDark = savedTheme === "true";
+      setTheme(isDark ? "dark" : "light");
+      document.documentElement.classList.toggle("light-mode", !isDark);
+    } else {
+      // Use system preference as default
+      const prefersDark = window.matchMedia(
+        "(prefers-color-scheme: dark)"
+      ).matches;
+      setTheme(prefersDark ? "dark" : "light");
+      document.documentElement.classList.toggle("light-mode", !prefersDark);
+    }
+  }, []);
+
+  // Check if we're on the server side
+  const isServer = typeof window === "undefined";
 
   return (
     <>
@@ -39,38 +64,33 @@ function MyApp({ Component, pageProps }: AppProps) {
         <meta name="twitter:image" content={METADATA.image} />
       </Head>
 
-      <motion.div
-        className="min-h-screen"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.75, ease: "easeOut" }}
-      >
-        <div className="relative mx-auto">
-          {/* Background */}
-          <motion.div
-            style={{ opacity: backgroundOpacity }}
-            className="fixed inset-0 z-0"
-          >
-            <motion.div
-              className="w-full h-full bg-cover bg-center bg-no-repeat"
-              style={{
-                backgroundImage: "url(/images/Space1.png)",
-                willChange: "opacity",
-              }}
-            />
-          </motion.div>
+      {isMounted && !isServer && <CustomCursor />}
 
-          {/* Content */}
-          <div className="relative z-10">
-            <Navbar />
-            <main className="max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-8">
-              <Component {...pageProps} />
-            </main>
-            <Footer />
+      {isMounted && !isServer ? (
+        <SmoothScroll>
+          <div className={`relative mx-auto ${theme}`}>
+            <div className="relative z-10">
+              <main className="max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-8 bg-background text-foreground">
+                <Component {...pageProps} />
+              </main>
+              <Footer />
+            </div>
+          </div>
+        </SmoothScroll>
+      ) : (
+        <div className={`min-h-screen ${theme}`}>
+          <div className="relative mx-auto">
+            <div className="relative z-10">
+              <main className="max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-8 bg-background text-foreground">
+                <Component {...pageProps} />
+              </main>
+              <Footer />
+            </div>
           </div>
         </div>
-      </motion.div>
+      )}
     </>
   );
 }
+
 export default MyApp;

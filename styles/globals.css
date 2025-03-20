@@ -1,44 +1,412 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Montserrat:wght@500;600;700;800&display=swap");
+
+/* Tusker font */
+@font-face {
+  font-family: "Tusker";
+  src: url("/fonts/Tusker.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Helvetica Neue font family */
+@font-face {
+  font-family: "Helvetica Neue";
+  src: url("/fonts/helvetica-neue/HelveticaNeueLight.otf") format("opentype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Helvetica Neue";
+  src: url("/fonts/helvetica-neue/HelveticaNeueLightItalic.otf")
+    format("opentype");
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Helvetica Neue";
+  src: url("/fonts/helvetica-neue/HelveticaNeue.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Helvetica Neue";
+  src: url("/fonts/helvetica-neue/HelveticaNeueItalic.otf") format("opentype");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Helvetica Neue";
+  src: url("/fonts/helvetica-neue/HelveticaNeueMedium.otf") format("opentype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Helvetica Neue";
+  src: url("/fonts/helvetica-neue/HelveticaNeueMediumItalic.otf")
+    format("opentype");
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Helvetica Neue";
+  src: url("/fonts/helvetica-neue/HelveticaNeueBold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Helvetica Neue";
+  src: url("/fonts/helvetica-neue/HelveticaNeueBoldItalic.otf")
+    format("opentype");
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Helvetica Neue";
+  src: url("/fonts/helvetica-neue/HelveticaNeueBlack.otf") format("opentype");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Helvetica Neue";
+  src: url("/fonts/helvetica-neue/HelveticaNeueBlackItalic.otf")
+    format("opentype");
+  font-weight: 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "White Block";
+  src: url("/fonts/white-block.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+:root {
+  --foreground: 255, 255, 253;
+  --background: 0, 0, 0;
+  --primary: 244, 146, 173;
+  --secondary: 255, 255, 253;
+  --transition-duration: 0.3s;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+html.light-mode {
+  --foreground: 30, 31, 31;
+  --background: 255, 255, 253;
+  --primary: 244, 146, 173;
+  --secondary: 30, 31, 31;
 }
 
-* {
-  box-sizing: border-box;
-  scroll-behavior: smooth;
+/* Text selection color - inverted */
+::selection {
+  background-color: rgb(var(--foreground));
+  color: rgb(var(--background));
 }
 
+/* Enhanced smooth scrolling */
 html {
-  color-scheme: dark;
-}
-body {
-  color: #ffffff;
-  background: #000000;
+  scroll-behavior: auto; /* Disable native smooth scroll to let Lenis handle it */
 }
 
-@font-face {
-  font-family: "MajorMonoDisplay";
-  src: url("/fonts/MajorMonoDisplay-Regular.ttf") format("truetype");
+@layer base {
+  body {
+    @apply bg-background text-foreground;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
 }
 
-@font-face {
-  font-family: "DMSerifDisplay-Regular";
-  src: url("/fonts/DMSerifDisplay-Regular.ttf") format("truetype");
+/* Dark/Light mode transition animation */
+.mode-transition-element {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: transparent;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0;
+  transition: opacity 0.6s ease;
 }
 
-@font-face {
-  font-family: "Tusker";
-  src: url("/fonts/TuskerGrotesk-2600Semibold.ttf") format("truetype");
+.mode-transition-element.animate {
+  opacity: 0.5;
+  background-color: rgb(var(--foreground));
+  animation: mode-transition 0.6s cubic-bezier(0.86, 0, 0.07, 1) forwards;
+}
+
+@keyframes mode-transition {
+  0% {
+    clip-path: circle(0% at calc(100% - 2.5rem) 2.5rem);
+  }
+  100% {
+    clip-path: circle(150% at calc(100% - 2.5rem) 2.5rem);
+  }
+}
+
+/* Project section background */
+.light-mode .bg-black\/30 {
+  background-color: rgba(240, 240, 240, 0.5);
+}
+
+/* Contact section background */
+.light-mode .bg-background\/30 {
+  background-color: rgba(240, 240, 240, 0.5);
+}
+
+/* Card backgrounds in light mode */
+.light-mode .bg-\[\#0A0A0A\] {
+  background-color: #f5f5f5;
+}
+
+.light-mode .bg-\[\#151515\] {
+  background-color: #e5e5e5;
+}
+
+.light-mode .bg-\[\#0D0D0D\] {
+  background-color: #ebebeb;
+}
+
+/* Text colors in light mode */
+.light-mode .text-white\/90 {
+  color: rgba(0, 0, 0, 0.9);
+}
+
+.light-mode .text-white\/70 {
+  color: rgba(0, 0, 0, 0.7);
+}
+
+/* Gradient overlays in light mode */
+.light-mode .from-black\/70 {
+  --tw-gradient-from: rgba(255, 255, 255, 0.7);
+}
+
+.light-mode .via-black\/60 {
+  --tw-gradient-stops: var(--tw-gradient-from), rgba(255, 255, 255, 0.6),
+    var(--tw-gradient-to);
+}
+
+.light-mode .to-black\/90 {
+  --tw-gradient-to: rgba(255, 255, 255, 0.9);
+}
+
+.light-mode .group-hover\:from-black\/50:hover {
+  --tw-gradient-from: rgba(255, 255, 255, 0.5);
+}
+
+.light-mode .group-hover\:via-black\/40:hover {
+  --tw-gradient-stops: var(--tw-gradient-from), rgba(255, 255, 255, 0.4),
+    var(--tw-gradient-to);
+}
+
+.light-mode .group-hover\:to-black\/80:hover {
+  --tw-gradient-to: rgba(255, 255, 255, 0.8);
+}
+
+.shadow-glow {
+  box-shadow: 0 0 15px rgba(244, 146, 173, 0.3);
+}
+
+.sharp-shadow {
+  box-shadow: 6px 6px 0px rgba(244, 146, 173, 0.3);
+}
+
+.hover-lift {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 8px 8px 0px rgba(244, 146, 173, 0.3);
+}
+
+.content-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .content-container {
+    padding: 0 3rem;
+  }
+}
+
+/* Fix for smooth scrolling */
+html:not(.has-scroll-smooth) {
+  overflow-y: auto;
+}
+
+/* Make sure links work with smooth scrolling */
+html.has-scroll-smooth a[href^="#"] {
+  cursor: pointer;
+}
+
+/* Smooth scrolling styles */
+html.lenis {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+.bg-radial-gradient {
+  background: radial-gradient(
+    circle at center,
+    rgba(244, 146, 173, 0.15) 0%,
+    transparent 70%
+  );
+}
+
+/* Scroll reveal animations - updated for Lenis */
+[data-lenis-scroll] {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+[data-lenis-scroll-in-view] {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Initial state - ensure content is visible before JS loads */
+.no-js [data-lenis-scroll] {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Add a class to the html element when JS is loaded */
+html:not(.no-js) {
+  /* JS is loaded */
+}
+
+/* Ensure content is visible if Lenis fails to initialize */
+html:not(.lenis) [data-lenis-scroll] {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Staggered reveal for cards */
+.staggered-card {
+  transition-delay: calc(var(--card-index, 0) * 0.1s);
+}
+
+/* Parallax elements */
+.parallax-element {
+  will-change: transform;
+}
+
+/* Scroll direction indicators */
+.c-scrollbar {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 11px;
+  height: 100%;
+  transform-origin: center right;
+  transition: transform 0.3s, opacity 0.3s;
+  opacity: 0;
+}
+
+.c-scrollbar:hover {
+  transform: scaleX(1.45);
+}
+
+.c-scrollbar_thumb {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: rgba(244, 146, 173, 0.5);
+  opacity: 0.5;
+  width: 7px;
+  border-radius: 10px;
+  margin: 2px;
+  cursor: grab;
+}
+
+.has-scroll-dragging .c-scrollbar_thumb {
+  cursor: grabbing;
+}
+
+.has-scroll-scrolling .c-scrollbar {
+  opacity: 1;
+}
+
+.has-scroll-hover .c-scrollbar {
+  opacity: 1;
+}
+
+/* Custom cursor styles */
+* {
+  cursor: none !important;
+}
+
+/* Ensure cursor is visible on mobile/touch devices */
+@media (pointer: coarse) {
+  * {
+    cursor: auto !important;
+  }
+
+  .custom-cursor {
+    display: none !important;
+  }
+}
+
+/* Utility classes for dark/light mode */
+.bg-background {
+  background-color: rgb(var(--background));
+  transition: background-color 0.3s ease;
+}
+
+.text-foreground {
+  color: rgb(var(--foreground));
+  transition: color 0.3s ease;
+}
+
+.text-primary {
+  color: rgb(var(--primary));
+  transition: color 0.3s ease;
+}
+
+.border-foreground {
+  border-color: rgb(var(--foreground));
+  transition: border-color 0.3s ease;
 }
