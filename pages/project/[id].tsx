@@ -144,7 +144,7 @@ const ProjectDetail = () => {
       <div className="min-h-screen">
         {/* Back button - fixed position */}
         <motion.div
-          className="fixed top-8 left-8 z-50"
+          className="fixed top-4 left-4 sm:top-8 sm:left-8 z-50"
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5 }}
@@ -162,32 +162,32 @@ const ProjectDetail = () => {
         </motion.div>
 
         {/* Infinite Scrolling Title */}
-        <div className="pt-32">
+        <div className="pt-24 sm:pt-28 md:pt-32">
           <SectionTitle title={project.company} />
         </div>
 
         {/* Main Content - Clean and Minimal */}
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 pb-12 sm:pb-16">
           <div className="max-w-5xl mx-auto">
             {/* Project Header - Left Aligned */}
             <motion.div
-              className="mb-12"
+              className="mb-8 sm:mb-12"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
             >
-              <h1 className="text-4xl md:text-6xl font-bold mb-3 text-left">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-2 sm:mb-3 text-left">
                 {project.company}
               </h1>
-              <p className="text-xl text-foreground/70 mb-5 text-left">
+              <p className="text-lg sm:text-xl text-foreground/70 mb-4 sm:mb-5 text-left">
                 {project.title}
               </p>
 
-              <div className="flex flex-wrap gap-2 mb-6 text-left">
+              <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-4 sm:mb-6 text-left">
                 {project.skills?.map((skill: string) => (
                   <span
                     key={skill}
-                    className="px-3 py-1 bg-white/10 backdrop-blur-sm text-white/90 rounded-full text-sm"
+                    className="px-2.5 py-1 sm:px-3 sm:py-1 bg-white/10 backdrop-blur-sm text-white/90 rounded-full text-xs sm:text-sm"
                   >
                     {skill}
                   </span>
@@ -206,12 +206,12 @@ const ProjectDetail = () => {
 
             {/* Project Description - Left Aligned */}
             <motion.div
-              className="mb-12"
+              className="mb-8 sm:mb-12"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
             >
-              <p className="text-xl leading-relaxed text-left">
+              <p className="text-base sm:text-lg md:text-xl leading-relaxed text-left">
                 {project.description}
               </p>
             </motion.div>
@@ -223,8 +223,8 @@ const ProjectDetail = () => {
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.5, delay: 0.3 }}
               >
-                <h2 className="text-2xl font-bold mb-4 text-left">Gallery</h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <h2 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4 text-left">Gallery</h2>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                   {galleryImages.map((image, index) => (
                     <motion.div
                       key={index}
@@ -253,30 +253,30 @@ const ProjectDetail = () => {
 
             {/* Project Details Footer */}
             <motion.div
-              className="mt-12 pt-6 border-t border-white/10 flex flex-wrap justify-between items-center"
+              className="mt-8 sm:mt-12 pt-4 sm:pt-6 border-t border-white/10 flex flex-col sm:flex-row sm:flex-wrap justify-between items-start sm:items-center gap-4 sm:gap-6"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.6 }}
             >
-              <div className="mb-4 md:mb-0">
-                <p className="text-foreground/60 text-xs uppercase tracking-wider mb-1">
+              <div className="mb-2 sm:mb-0">
+                <p className="text-foreground/60 text-xs uppercase tracking-wider mb-0.5 sm:mb-1">
                   LAUNCHED
                 </p>
-                <p className="text-foreground font-medium">{project.date}</p>
+                <p className="text-foreground font-medium text-sm sm:text-base">{project.date}</p>
               </div>
 
-              <div className="mb-4 md:mb-0">
-                <p className="text-foreground/60 text-xs uppercase tracking-wider mb-1">
+              <div className="mb-2 sm:mb-0">
+                <p className="text-foreground/60 text-xs uppercase tracking-wider mb-0.5 sm:mb-1">
                   MY ROLE
                 </p>
-                <p className="text-foreground font-medium">Lead Developer</p>
+                <p className="text-foreground font-medium text-sm sm:text-base">Lead Developer</p>
               </div>
 
               <div>
-                <p className="text-foreground/60 text-xs uppercase tracking-wider mb-1">
+                <p className="text-foreground/60 text-xs uppercase tracking-wider mb-0.5 sm:mb-1">
                   TECH STACK
                 </p>
-                <p className="text-foreground font-medium">
+                <p className="text-foreground font-medium text-sm sm:text-base">
                   {project.skills?.join(", ")}
                 </p>
               </div>

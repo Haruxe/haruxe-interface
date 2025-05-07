@@ -23,7 +23,7 @@ const ArticleCard: React.FC<ArticleCardProps> = ({
 }) => {
   return (
     <Link href={`/article/${id}`} className="block h-full">
-      <Card className="overflow-hidden group h-[450px] relative rounded-lg hover:shadow-lg transition-all duration-300 cursor-pointer">
+      <Card className="overflow-hidden group min-h-[380px] sm:min-h-[400px] md:min-h-[420px] relative rounded-lg hover:shadow-lg transition-all duration-300 cursor-pointer flex flex-col">
         <div className="absolute inset-0 overflow-hidden rounded-lg">
           <Image
             src={banner}
@@ -34,10 +34,10 @@ const ArticleCard: React.FC<ArticleCardProps> = ({
           <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/60 to-black/90 transition-all duration-500" />
         </div>
 
-        <div className="relative z-10 flex flex-col h-full p-8">
+        <div className="relative z-10 flex flex-col h-full p-6 md:p-8">
           {/* Top section with date tag */}
           <div className="mb-auto">
-            <Tag variant="light" className="mb-2">
+            <Tag variant="light" className="mb-2 text-xs sm:text-sm">
               {date}
             </Tag>
           </div>
@@ -47,15 +47,15 @@ const ArticleCard: React.FC<ArticleCardProps> = ({
 
           {/* Bottom section with title and platform */}
           <div>
-            <h3 className="text-3xl font-bold uppercase text-white tracking-tight mb-2 transition-transform duration-300 group-hover:-translate-y-1">
+            <h3 className="text-2xl sm:text-3xl font-bold uppercase text-white tracking-tight mb-1 sm:mb-2 transition-transform duration-300 group-hover:-translate-y-1">
               {title}
             </h3>
-            <p className="text-white/80 text-lg font-light mb-6 transition-transform duration-300 group-hover:-translate-y-1">
+            <p className="text-white/80 text-base sm:text-lg font-light mb-4 sm:mb-6 transition-transform duration-300 group-hover:-translate-y-1">
               {platform}
             </p>
 
             <div className="flex items-center opacity-80 group-hover:opacity-100 transition-all duration-300">
-              <span className="text-white/90 text-sm uppercase tracking-wider mr-3">
+              <span className="text-white/90 text-xs sm:text-sm uppercase tracking-wider mr-2 sm:mr-3">
                 View Details
               </span>
               <svg

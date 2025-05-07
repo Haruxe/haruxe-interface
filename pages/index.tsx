@@ -28,7 +28,7 @@ const Home: NextPage = () => {
           <Section id="experience" speed={0.2} spacing="normal">
             <SectionTitle title="Experience" />
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
               <JobCard
                 title="Blockchain Developer & Security Researcher"
                 company="BAO Finance"
@@ -102,7 +102,7 @@ const Home: NextPage = () => {
           >
             <SectionTitle title="Projects" />
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
               <ProjectCard
                 title="NFT/Staking project built for Web3SG"
                 company="MindPalace"
@@ -154,10 +154,10 @@ const Home: NextPage = () => {
           </Section>
 
           {/* Articles Section */}
-          <Section id="articles" speed={0.15} spacing="small">
+          <Section id="articles" speed={0.25} spacing="normal">
             <SectionTitle title="Articles" />
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
               <ArticleCard
                 title="Uniswap Zero to Mastery"
                 platform="Mirror"
@@ -203,23 +203,12 @@ const Home: NextPage = () => {
             spacing="normal"
             className="bg-background/30"
           >
-            <div className="max-w-2xl mx-auto text-center">
+            <div className="max-w-2xl mx-auto text-center px-4 sm:px-0">
               <SectionTitle title="Contact" />
 
-              <p className="text-foreground/70 text-lg mb-16">
-                I&apos;m always open to new opportunities and connections.
+              <p className="text-foreground/70 text-base sm:text-lg leading-relaxed mb-10 sm:mb-12 md:mb-16">
+                I&apos;m always open to new opportunities and connections. Feel free to reach out!
               </p>
-
-              <div className="flex flex-col md:flex-row items-center justify-center gap-8">
-                <Button href="mailto:haruxe@proton.me">Email Me</Button>
-                <Button
-                  href="https://twitter.com/haruxeETH"
-                  variant="outline"
-                  external
-                >
-                  Twitter
-                </Button>
-              </div>
             </div>
           </Section>
         </main>

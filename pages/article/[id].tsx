@@ -117,7 +117,7 @@ const ArticleDetail = () => {
 
       <div className="min-h-screen">
         {/* Compact Header with Social Media Profile Style */}
-        <div className="relative bg-[#050505] pt-16 pb-8">
+        <div className="relative bg-[#050505] pt-12 pb-6 sm:pt-16 sm:pb-8">
           <div className="absolute inset-0 opacity-30">
             <div
               className="w-full h-full"
@@ -134,21 +134,21 @@ const ArticleDetail = () => {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <Link
               href="/"
-              className="inline-flex items-center text-white/80 hover:text-white mb-8 transition-colors group"
+              className="inline-flex items-center text-white/80 hover:text-white mb-6 sm:mb-8 transition-colors group"
             >
               <ArrowLeft
-                size={20}
+                size={18}
                 className="mr-2 group-hover:-translate-x-1 transition-transform duration-300"
               />
-              <span className="uppercase tracking-wider text-sm">
+              <span className="uppercase tracking-wider text-xs sm:text-sm">
                 Back to Articles
               </span>
             </Link>
 
-            <div className="flex flex-col md:flex-row gap-8 items-start">
+            <div className="flex flex-col md:flex-row gap-6 sm:gap-8 items-start">
               {/* Profile Image */}
               <motion.div
-                className="w-full md:w-1/3 aspect-square relative rounded-lg overflow-hidden shadow-xl"
+                className="w-full aspect-[4/3] sm:aspect-square md:w-1/3 relative rounded-lg overflow-hidden shadow-xl"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
@@ -161,8 +161,8 @@ const ArticleDetail = () => {
                   priority
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-                <div className="absolute bottom-4 left-4">
-                  <span className="px-3 py-1 bg-primary/20 backdrop-blur-sm text-primary rounded-full text-sm">
+                <div className="absolute bottom-3 left-3 sm:bottom-4 sm:left-4">
+                  <span className="px-2.5 py-1 sm:px-3 sm:py-1 bg-primary/20 backdrop-blur-sm text-primary rounded-full text-xs sm:text-sm">
                     {article.date}
                   </span>
                 </div>
@@ -175,14 +175,14 @@ const ArticleDetail = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
               >
-                <h1 className="text-4xl md:text-5xl font-bold text-white mb-2 tracking-tight">
+                <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-1 sm:mb-2 tracking-tight">
                   {article.title}
                 </h1>
-                <p className="text-xl text-white/80 mb-6">
+                <p className="text-lg sm:text-xl text-white/80 mb-4 sm:mb-6">
                   Published on {article.platform}
                 </p>
 
-                <Button href={article.link} external>
+                <Button href={article.link} external size="small" className="sm:text-base">
                   Read Full Article
                 </Button>
               </motion.div>
@@ -191,27 +191,27 @@ const ArticleDetail = () => {
         </div>
 
         {/* Content Section with Infinite Scroll Title */}
-        <Section spacing="large">
+        <Section spacing="normal" className="md:spacing-large">
           <SectionTitle title="Article Details" />
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
             <div className="md:col-span-2">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
               >
-                <h2 className="text-3xl font-bold mb-6">Article Summary</h2>
-                <p className="text-foreground/80 text-lg leading-relaxed mb-8">
+                <h2 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6">Article Summary</h2>
+                <p className="text-foreground/80 text-base sm:text-lg leading-relaxed mb-6 sm:mb-8">
                   {article.description}
                 </p>
 
-                <div className="mt-12 space-y-6">
-                  <h3 className="text-2xl font-bold mb-6">Key Points</h3>
+                <div className="mt-8 sm:mt-12 space-y-4 sm:space-y-6">
+                  <h3 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">Key Points</h3>
                   {article.content.map((paragraph: string, index: number) => (
                     <div key={index} className="flex items-start">
-                      <span className="text-primary text-xl mr-4">•</span>
-                      <p className="text-foreground/80 text-lg">{paragraph}</p>
+                      <span className="text-primary text-lg sm:text-xl mr-2 sm:mr-4">•</span>
+                      <p className="text-foreground/80 text-base sm:text-lg">{paragraph}</p>
                     </div>
                   ))}
                 </div>
@@ -220,38 +220,38 @@ const ArticleDetail = () => {
 
             <div>
               <motion.div
-                className="sticky top-24"
+                className="sticky top-16 sm:top-24"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.4 }}
               >
-                <div className="bg-[#0A0A0A] p-8 rounded-lg border border-white/10">
-                  <h3 className="text-xl font-bold mb-6 inline-block relative">
+                <div className="bg-[#0A0A0A] p-6 sm:p-8 rounded-lg border border-white/10">
+                  <h3 className="text-lg sm:text-xl font-bold mb-4 sm:mb-6 inline-block relative">
                     Article Details
-                    <span className="absolute -bottom-2 left-0 w-1/3 h-0.5 bg-primary/70"></span>
+                    <span className="absolute -bottom-1.5 sm:-bottom-2 left-0 w-1/3 h-0.5 bg-primary/70"></span>
                   </h3>
 
-                  <div className="space-y-6 mb-8">
+                  <div className="space-y-4 sm:space-y-6 mb-6 sm:mb-8">
                     <div>
-                      <p className="text-foreground/60 text-sm uppercase tracking-wider mb-1">
+                      <p className="text-foreground/60 text-xs sm:text-sm uppercase tracking-wider mb-1">
                         DATE
                       </p>
-                      <p className="text-foreground font-medium">
+                      <p className="text-foreground font-medium text-sm sm:text-base">
                         {article.date}
                       </p>
                     </div>
 
                     <div>
-                      <p className="text-foreground/60 text-sm uppercase tracking-wider mb-1">
+                      <p className="text-foreground/60 text-xs sm:text-sm uppercase tracking-wider mb-1">
                         PLATFORM
                       </p>
-                      <p className="text-foreground font-medium">
+                      <p className="text-foreground font-medium text-sm sm:text-base">
                         {article.platform}
                       </p>
                     </div>
                   </div>
 
-                  <Button href={article.link} external className="w-full">
+                  <Button href={article.link} external className="w-full" size="small">
                     Read Full Article
                   </Button>
                 </div>
@@ -261,17 +261,17 @@ const ArticleDetail = () => {
         </Section>
 
         {/* Related Articles Section */}
-        <Section spacing="large" className="bg-[#050505]">
+        <Section spacing="normal" className="md:spacing-large bg-[#050505]">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.6 }}
           >
-            <h2 className="text-3xl font-bold mb-12 text-center">
+            <h2 className="text-2xl sm:text-3xl font-bold mb-8 sm:mb-12 text-center">
               More Articles
             </h2>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
               {Object.entries(articlesData)
                 .filter(([key]) => key !== id)
                 .slice(0, 3)
@@ -281,7 +281,7 @@ const ArticleDetail = () => {
                     className="bg-[#0A0A0A] rounded-lg overflow-hidden group hover:shadow-lg transition-all duration-300"
                     whileHover={{ y: -5 }}
                   >
-                    <div className="relative h-48 overflow-hidden">
+                    <div className="relative h-40 sm:h-48 overflow-hidden">
                       <Image
                         src={relatedArticle.banner}
                         alt={relatedArticle.title}
@@ -295,18 +295,18 @@ const ArticleDetail = () => {
                         </span>
                       </div>
                     </div>
-                    <div className="p-6">
-                      <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors duration-300">
+                    <div className="p-4 sm:p-6">
+                      <h3 className="text-lg sm:text-xl font-bold mb-2 group-hover:text-primary transition-colors duration-300">
                         {relatedArticle.title}
                       </h3>
-                      <p className="text-foreground/70 mb-4 line-clamp-2">
+                      <p className="text-foreground/70 text-sm sm:text-base mb-3 sm:mb-4 line-clamp-2">
                         {relatedArticle.platform}
                       </p>
                       <Link
                         href={`/article/${key}`}
-                        className="inline-flex items-center text-primary group-hover:text-primary/80"
+                        className="inline-flex items-center text-primary group-hover:text-primary/80 text-sm sm:text-base"
                       >
-                        <span className="mr-2">View Details</span>
+                        <span className="mr-1.5 sm:mr-2">View Details</span>
                         <span className="transform transition-transform duration-300 group-hover:translate-x-1">
                           →
                         </span>

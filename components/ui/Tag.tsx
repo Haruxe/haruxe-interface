@@ -13,13 +13,13 @@ const Tag: React.FC<TagProps> = ({
 }) => {
   const variantClasses = {
     light:
-      "bg-[#151515] text-white/90 dark:bg-[#151515] dark:text-white/90 light:bg-[#E5E5E5] light:text-black/90",
-    dark: "bg-[#0D0D0D] text-white/70 dark:bg-[#0D0D0D] dark:text-white/70 light:bg-[#EBEBEB] light:text-black/70",
+      "bg-foreground/10 text-foreground/80 dark:bg-white/10 dark:text-white/80 light:bg-black/5 light:text-black/70",
+    dark: "bg-foreground/20 text-foreground/90 dark:bg-white/20 dark:text-white/90 light:bg-black/10 light:text-black/80",
   };
 
   return (
     <span
-      className={`inline-block px-3 py-1 text-xs font-medium rounded-full ${variantClasses[variant]} ${className}`}
+      className={`inline-block px-3 py-1.5 text-xs font-medium rounded-full ${variantClasses[variant]} ${className} tracking-wider`}
     >
       {children}
     </span>

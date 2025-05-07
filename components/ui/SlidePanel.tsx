@@ -94,7 +94,7 @@ const SlidePanel: React.FC<SlidePanelProps> = ({
             {/* Close button */}
             <button
               onClick={onClose}
-              className="absolute top-6 left-6 z-10 w-10 h-10 flex items-center justify-center rounded-full bg-black/40 backdrop-blur-sm text-white/80 hover:text-white hover:bg-black/60 transition-all"
+              className="absolute top-4 left-4 sm:top-6 sm:left-6 z-10 w-10 h-10 flex items-center justify-center rounded-full bg-black/40 backdrop-blur-sm text-white/80 hover:text-white hover:bg-black/60 transition-all"
               aria-label="Close panel"
             >
               <svg
@@ -115,7 +115,7 @@ const SlidePanel: React.FC<SlidePanelProps> = ({
             </button>
 
             {/* Banner image */}
-            <div className="relative h-64 w-full">
+            <div className="relative h-48 sm:h-56 md:h-64 w-full">
               <Image
                 src={banner}
                 alt={company}
@@ -127,36 +127,36 @@ const SlidePanel: React.FC<SlidePanelProps> = ({
             </div>
 
             {/* Content */}
-            <div className="p-8">
-              <h2 className="text-3xl font-whiteblock uppercase text-white tracking-tighter leading-none mb-2">
+            <div className="p-6 sm:p-8">
+              <h2 className="text-2xl sm:text-3xl font-whiteblock uppercase text-white tracking-tighter leading-none mb-2">
                 {company}
               </h2>
-              <p className="text-white/80 text-xl font-light mb-6">{title}</p>
+              <p className="text-white/80 text-lg sm:text-xl font-light mb-6">{title}</p>
 
-              <div className="flex flex-wrap gap-3 mb-8">
+              <div className="flex flex-wrap gap-2 sm:gap-3 mb-6 sm:mb-8">
                 {type && <Tag variant="dark">{type}</Tag>}
                 <Tag variant="light">{date}</Tag>
               </div>
 
-              <div className="mb-8">
-                <h3 className="text-white/90 text-sm uppercase tracking-wider mb-3 font-medium">
+              <div className="mb-6 sm:mb-8">
+                <h3 className="text-white/90 text-xs sm:text-sm uppercase tracking-wider mb-2 sm:mb-3 font-medium">
                   About
                 </h3>
-                <p className="text-white/80 text-base leading-relaxed">
+                <p className="text-white/80 text-sm sm:text-base leading-relaxed">
                   {description}
                 </p>
               </div>
 
               {skills && skills.length > 0 && (
-                <div className="mb-8">
-                  <h3 className="text-white/90 text-sm uppercase tracking-wider mb-3 font-medium">
+                <div className="mb-6 sm:mb-8">
+                  <h3 className="text-white/90 text-xs sm:text-sm uppercase tracking-wider mb-2 sm:mb-3 font-medium">
                     Technologies
                   </h3>
                   <div className="flex flex-wrap gap-2">
                     {skills.map((skill) => (
                       <span
                         key={skill}
-                        className="px-3 py-1.5 bg-[#151515] text-white/80 text-sm rounded-full"
+                        className="px-3 py-1.5 bg-[#151515] text-white/80 text-xs sm:text-sm rounded-full"
                       >
                         {skill}
                       </span>
@@ -165,9 +165,9 @@ const SlidePanel: React.FC<SlidePanelProps> = ({
                 </div>
               )}
 
-              <div className="h-[1px] w-full bg-white/10 my-6"></div>
+              <div className="h-[1px] w-full bg-white/10 my-4 sm:my-6"></div>
 
-              <Button href={link} external className="w-full">
+              <Button href={link} external className="w-full text-sm sm:text-base">
                 Visit Website
               </Button>
             </div>

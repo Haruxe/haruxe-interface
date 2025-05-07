@@ -44,7 +44,7 @@ const SectionTitle: React.FC<SectionTitleProps> = ({ title }) => {
   const y = useTransform(scrollYProgress, [0, 1], [0, 30]);
 
   return (
-    <div ref={containerRef} className="mb-16 md:mb-24 w-full overflow-hidden">
+    <div ref={containerRef} className="mb-12 md:mb-16 lg:mb-24 w-full overflow-hidden">
       <motion.div style={{ y }} className="relative">
         <div className="relative overflow-hidden">
           <motion.div
@@ -54,21 +54,21 @@ const SectionTitle: React.FC<SectionTitleProps> = ({ title }) => {
           >
             {/* First copy of the text */}
             <span className="block">
-              <h2 className="text-5xl sm:text-6xl md:text-7xl font-bold uppercase text-foreground tracking-tighter leading-none">
+              <h2 className="text-[2.5rem] sm:text-5xl md:text-6xl lg:text-7xl font-bold uppercase text-foreground tracking-tighter leading-none">
                 {repeatedTitle}
               </h2>
             </span>
 
             {/* Second copy of the text (identical) for seamless looping */}
             <span className="block">
-              <h2 className="text-5xl sm:text-6xl md:text-7xl font-bold uppercase text-foreground tracking-tighter leading-none">
+              <h2 className="text-[2.5rem] sm:text-5xl md:text-6xl lg:text-7xl font-bold uppercase text-foreground tracking-tighter leading-none">
                 {repeatedTitle}
               </h2>
             </span>
           </motion.div>
         </div>
       </motion.div>
-      <div className="h-[1px] w-full bg-foreground/10 mt-8"></div>
+      <div className="h-[1px] w-full bg-foreground/10 mt-6 sm:mt-8"></div>
     </div>
   );
 };
